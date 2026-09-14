@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07183f">
+<link rel="canonical" href="https://bmcscrolloriginal.com/">
+<meta property="og:url" content="https://bmcscrolloriginal.com/">
+<meta name="application-name" content="BMC Scroll">
+<title>BMC Scroll — Your world. Your scroll.</title>
+<style>
+:root{--navy:#07183f;--navy2:#0d2458;--blue:#1769e0;--gold:#f5c43b;--gold2:#e8ad20;--bg:#f5f7fb;--card:#fff;--text:#101a35;--muted:#718096;--line:#e3e8f2;--green:#0b7a4b;--danger:#d64545}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+body{overflow:hidden}
+.app{height:100%;display:flex;flex-direction:column}
+.top{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:8px 18px;z-index:20}
+.logoWrap{display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#174fd0,#1673df);display:grid;place-items:center;color:var(--gold);font-weight:900;font-size:20px;border:2px solid #e8eef8;box-shadow:0 4px 12px #132d6b22}.brand h1{font-size:24px;line-height:1}.brand p{color:var(--muted);font-size:14px;margin-top:4px}
+.avatar{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#fff;color:#234a9b;font-weight:800}
+.main{flex:1;min-height:0;overflow:hidden;position:relative}
+.view{height:100%;overflow:auto;display:none;padding:28px 24px 100px}.view.active{display:block}
+.hero{max-width:1100px;margin:auto;background:linear-gradient(135deg,#202534,#071b51);color:#fff;border-radius:48px;padding:46px;box-shadow:0 16px 40px #12265322}.eyebrow{color:var(--gold);letter-spacing:5px;font-size:14px;font-weight:800}.hero h2{font-size:54px;line-height:1.12;margin:20px 0 18px}.hero p{color:#d3d9e7;font-size:20px;max-width:720px;line-height:1.55}.goldBtn{margin-top:28px;border:0;background:linear-gradient(90deg,#ffd557,#efa91b);color:#132044;padding:16px 25px;border-radius:35px;font-weight:900;font-size:18px}
+.sectionTitle{max-width:1100px;margin:28px auto 14px;font-size:27px}.grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature{background:#fff;border:1px solid var(--line);border-radius:28px;padding:28px;min-height:180px;box-shadow:0 8px 24px #132d6b0b}.feature .icon{font-size:36px}.feature h3{font-size:24px;margin:16px 0 5px}.feature p{color:var(--muted)}
+.feedHead{max-width:760px;margin:0 auto 16px;display:flex;gap:8px;align-items:center}.pill{border:0;background:#eaf0fb;color:#33466f;border-radius:20px;padding:9px 14px;font-weight:700}.pill.active{background:var(--navy);color:#fff}
+.feed{max-width:760px;margin:auto;display:flex;flex-direction:column;gap:16px}.post{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 8px 24px #132d6b0b}.postTop{padding:14px 16px;display:flex;justify-content:space-between;align-items:center}.author{display:flex;align-items:center;gap:10px;font-weight:800}.mini{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#eaf0ff;color:#2454ae}.postMedia{width:100%;max-height:560px;object-fit:cover;display:block;background:#0b1633}.postBody{padding:15px 16px}.postText{line-height:1.5}.actions{display:flex;gap:8px;margin-top:12px}.action{border:0;background:#f0f3f9;padding:9px 12px;border-radius:18px}.action.liked{background:#ffe9a5}.comments{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}.comment{font-size:13px;margin:6px 0}.comment b{margin-right:5px}.commentRow{display:flex;gap:7px;margin-top:8px}.commentRow input{flex:1;border:1px solid var(--line);border-radius:18px;padding:8px 12px}.commentRow button{border:0;border-radius:18px;padding:8px 12px;background:var(--navy);color:#fff}
+.searchBox{max-width:760px;margin:auto;display:flex;gap:8px}.searchBox input,.form input,.form textarea,.form select{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;outline:none}.searchBox button,.primary{border:0;border-radius:12px;background:var(--navy);color:#fff;padding:0 18px;font-weight:800}.results{max-width:760px;margin:18px auto}
+.panel{max-width:1000px;margin:auto;background:#fff;border:1px solid var(--line);border-radius:25px;padding:22px;box-shadow:0 8px 24px #132d6b0b}.panel h2{margin-bottom:8px}.muted{color:var(--muted)}
+.studyGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.studyCard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px}
+.gameGrid{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.gameCard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.gameCard button{margin-top:14px;border:0;background:var(--navy);color:#fff;border-radius:12px;padding:11px 15px}.gameArea{margin-top:15px;min-height:120px;background:#f1f4fa;border-radius:15px;padding:15px}
+.aiPanel{max-width:760px;margin:auto;background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px}.aiMessages{height:420px;overflow:auto;background:#f6f8fc;border-radius:17px;padding:14px;display:flex;flex-direction:column;gap:10px}.bubble{max-width:85%;padding:10px 13px;border-radius:15px;line-height:1.45}.bubble.user{align-self:flex-end;background:var(--navy);color:#fff}.bubble.ai{align-self:flex-start;background:#fff;border:1px solid var(--line)}.aiInput{display:flex;gap:8px;margin-top:10px}.aiInput input{flex:1;border:1px solid var(--line);border-radius:20px;padding:11px 14px}.aiInput button{border:0;border-radius:20px;background:var(--green);color:#fff;padding:0 18px}
+.studio{max-width:900px;margin:auto}.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:14px}.tab{border:0;background:#eaf0fb;border-radius:20px;padding:9px 15px;white-space:nowrap}.tab.active{background:var(--navy);color:#fff}.form{display:grid;gap:12px}.form textarea{min-height:110px;resize:vertical}.fileInput{padding:12px;background:#f7f9fc;border:1px dashed #aeb9cc;border-radius:14px}
+.lab{max-width:1000px;margin:auto}.locked{background:#fff;border:1px solid var(--line);border-radius:24px;padding:30px;text-align:center}.labArea{display:none}.labArea.unlocked{display:block}.labCard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:15px}.labCard h3{margin-bottom:8px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;min-height:210px}.preview{width:100%;height:360px;border:1px solid var(--line);border-radius:15px;background:#fff}.labActions{display:flex;gap:8px;flex-wrap:wrap}.danger{background:var(--danger)!important}.bottom{height:74px;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:20;overflow-x:auto;overflow-y:hidden}.navItem{border:0;background:none;color:#68758d;min-width:60px;flex:0 0 auto;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:3px}.navItem span{font-size:22px}.navItem.active{color:#1d4db1}.navItem.active span{background:#eef3ff;border-radius:18px;padding:2px 12px}
+.accountModal{position:fixed;inset:0;background:#07183f66;display:none;align-items:center;justify-content:center;padding:18px;z-index:200}.accountModal.show{display:flex}.accountBox{width:min(420px,94vw);background:#fff;border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:0 20px 60px #07183f33}.accountAvatar{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:linear-gradient(145deg,#174fd0,#1673df);color:var(--gold);font-size:25px;font-weight:900;border:2px solid #e8eef8}.ceoBadge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(90deg,#fff4b8,#f5c43b);color:#6d4b00;border:1px solid #e8ad20;border-radius:20px;padding:6px 10px;font-weight:900;font-size:12px;margin-top:8px}.accountActions{display:grid;gap:9px;margin-top:18px}.accountActions button{border:0;border-radius:14px;padding:12px;font-weight:800}.accountClose{background:#eef2f8;color:#23365e}.accountLab{background:var(--navy);color:#fff}.accountLogout{background:#ffe9e9;color:#a52f2f}.
+.studioCeoTools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}.ceoLabBtn{border:1px solid var(--gold2);background:linear-gradient(90deg,#fff4b8,#f5c43b);color:#6d4b00;border-radius:14px;padding:7px 12px;font-weight:900}.studioCeoTools .ceoBadge{margin-top:0}.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);background:#111d3b;color:#fff;padding:11px 16px;border-radius:20px;display:none;z-index:100}.empty{padding:30px;text-align:center;color:var(--muted);background:#fff;border-radius:20px;border:1px solid var(--line)}
+/* Native-app navigation polish */
+.view{opacity:0;transform:translateY(4px);transition:opacity .16s ease,transform .16s ease;will-change:opacity,transform;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
+.view.active{opacity:1;transform:none}
+.navItem{position:relative;min-height:54px;padding:5px 4px 2px;border-radius:14px;transition:color .16s ease,background .16s ease,transform .12s ease}
+.navItem:active{transform:scale(.94)}
+.navItem .navSvg{width:34px;height:30px;display:grid;place-items:center;border-radius:15px;transition:background .16s ease,transform .16s ease}
+.navItem .navSvg svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.navItem.active .navSvg{background:#eef3ff;transform:translateY(-1px)}
+.navItem.active{font-weight:700}
+.bottom{padding-bottom:env(safe-area-inset-bottom);height:74px;touch-action:pan-x}
+@media(prefers-reduced-motion:reduce){.view,.navItem,.navItem .navSvg{transition:none}}
+@media(max-width:750px){.top{height:66px}.brand h1{font-size:20px}.brand p{font-size:12px}.logo{width:48px;height:48px}.hero{padding:30px;border-radius:34px}.hero h2{font-size:40px}.hero p{font-size:17px}.grid,.gameGrid,.studyGrid{grid-template-columns:1fr}.view{padding:20px 14px 90px}.bottom{height:68px}.navItem{min-width:42px}.navItem span{font-size:20px}.navItem.active span{padding:1px 9px}}
+
+/* BMC AI + Creator Studio extensions */
+.subTabs{display:flex;gap:8px;overflow:auto;margin:14px 0 16px;padding:4px;background:#edf2fa;border-radius:24px}.subTab{flex:1;min-width:120px;border:0;background:transparent;border-radius:20px;padding:11px 14px;color:#5d6b82;font-weight:800}.subTab.active{background:#fff;color:var(--navy);box-shadow:0 2px 8px #132d6b14}
+.aiTools{display:flex;gap:8px;overflow:auto;margin-bottom:14px}.aiTool{border:1px solid var(--line);background:#fff;border-radius:20px;padding:9px 14px;white-space:nowrap}.aiTool.active{background:#1d52c5;color:#fff;border-color:#1d52c5}
+.aiPane{display:none}.aiPane.active{display:block}
+.aiEmpty{min-height:390px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px}.aiEmpty .spark{font-size:48px;color:var(--gold)}
+.studioHead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.createBtn{border:0;background:#2454c6;color:#fff;border-radius:16px;padding:13px 20px;font-weight:900;font-size:17px;box-shadow:0 5px 12px #2454c633}.metricGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}.metric{background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:0 8px 24px #132d6b0b}.metric small{display:block;color:var(--muted);font-size:14px}.metric strong{display:block;font-size:32px;margin-top:4px}.topPosts{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px}.bar{height:8px;background:#e6ecf6;border-radius:10px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#1c4fbf,#3b91e9);border-radius:10px}.createTypeGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.createType{border:1px solid var(--line);background:#fff;border-radius:16px;padding:14px;text-align:left}.createType.active{border:2px solid #2454c6;background:#f3f7ff}.codeLarge{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;min-height:260px!important}.codePreview{width:100%;height:330px;border:1px solid var(--line);border-radius:16px;background:#fff}.modalWide{width:min(760px,94vw);max-height:90vh;overflow:auto;text-align:left}.customFeature{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid var(--line);border-radius:15px;margin-top:9px}.customFeature button{border:0;border-radius:10px;padding:8px 11px;background:var(--navy);color:#fff}.labNotice{background:#eef5ff;border:1px solid #cbdcff;padding:12px;border-radius:14px;margin-top:10px;color:#29416d;font-size:13px}
+.createDesktopPanel{width:min(720px,100vw);height:100vh;max-height:100vh;border-radius:0;padding:28px 28px 110px;overflow:auto}.createHeader{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:20px}.createHeader h2{font-size:32px}.createSection{margin-bottom:18px}.createSection>label,.createField>label,.createUpload>label{display:block;font-size:16px;margin-bottom:8px;font-weight:600}.createTypeGridNew{grid-template-columns:repeat(3,1fr);margin-top:10px}.createTypeGridNew .createType{padding:13px 10px;text-align:center;font-size:16px;border-radius:30px}.createTypeGridNew .createType.active{border:2px solid #2454c6;background:#eef3ff}.createField{margin-top:16px}.createLabel{display:flex;justify-content:space-between;align-items:center;gap:8px}.createLabel button{border:0;background:none;color:var(--gold2);font-weight:900;font-size:14px}.createField input,.createField textarea,.createField select{width:100%;border:1px solid var(--line);border-radius:15px;padding:14px;background:#fff;outline:none;box-shadow:0 2px 6px #132d6b12}.createField textarea{min-height:125px}.createUpload{margin-top:18px}.uploadBox{min-height:76px;border:1.5px dashed #d9dfeb;border-radius:38px;background:#fff;display:flex;align-items:center;gap:15px;padding:14px 22px;color:#718096;font-size:15px;cursor:pointer}.uploadBox span:first-child{font-size:30px;color:#2454c6}.uploadBox input{display:none}.uploadStatus{font-size:12px;color:var(--green);margin:7px 8px 0}.visibilityCard{margin-top:22px;border:1px solid var(--line);border-radius:28px;padding:22px;background:#fff}.visibilityCard h3{font-size:18px;margin-bottom:16px}.visibilityChoices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.visibilityChoice{border:1px solid var(--line);background:#fff;border-radius:25px;padding:16px;text-align:left;display:grid;gap:5px;color:var(--text)}.visibilityChoice.active{border:2px solid #5676bb;background:#eef3ff}.visibilityChoice b{font-size:18px}.visibilityChoice small{color:var(--muted);font-size:13px}.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;font-size:16px}.toggle{width:64px;height:36px;border:0;border-radius:20px;background:#dce4f2;padding:4px}.toggle i{display:block;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0002;transition:.2s}.toggle.on{background:#2454c6}.toggle.on i{transform:translateX(28px)}.createActions{display:flex;gap:10px;align-items:center;margin-top:24px}.createPublish,.createDraft,.createCancel{padding:13px 22px;border-radius:18px}.createNoLimits{margin-top:14px;color:var(--muted);font-size:12px;line-height:1.45}.createCodeOptional{margin-top:16px}@media(max-width:520px){.createDesktopPanel{padding:22px 18px 100px}.createTypeGridNew{grid-template-columns:repeat(2,1fr)}.visibilityChoices{grid-template-columns:1fr}.createActions{flex-wrap:wrap}.createCancel{margin-left:auto}}
+.aiConnectCard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 8px 24px #132d6b0b}.aiConnectStatus{display:flex;align-items:center;gap:8px;margin-top:10px;padding:10px 12px;border-radius:12px;background:#f1f5fb;color:#33466f;font-size:13px}.aiConnectStatus.ok{background:#e9f8f0;color:#12633f}.aiConnectStatus.bad{background:#fff0f0;color:#a52f2f}.aiKeyRow{display:flex;gap:8px;align-items:center}.aiKeyRow input{flex:1}.aiConnectActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.aiConnectHint{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.45}.historyList{display:flex;flex-direction:column;gap:8px}.historyItem{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;cursor:pointer}.historyItem:hover{background:#f6f8fc}.historyMeta{font-size:12px;color:var(--muted);margin-top:3px}
+@media(max-width:750px){.metricGrid,.createTypeGrid{grid-template-columns:1fr 1fr}.metric strong{font-size:27px}.studioHead{align-items:flex-start}.studioHead h2{font-size:26px}.createBtn{padding:11px 15px}}
+@media(max-width:470px){.metricGrid{grid-template-columns:1fr}.createTypeGrid{grid-template-columns:1fr 1fr}}
+
+/* Immersive BMC Scroll + Home flow */
+#scroll{padding:0!important;overflow:hidden;background:#050b19;position:relative}
+#scroll .feedHead{display:none}
+#scroll .feed{height:100dvh;min-height:100vh;width:100vw;max-width:none;margin:0;padding:0;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior-y:contain;scrollbar-width:none}
+#scroll .feed::-webkit-scrollbar{display:none}
+.scrollSlide{width:100vw;height:100dvh;min-height:100vh;flex:0 0 100dvh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;background:#050b19;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.scrollSlide .scrollMedia{position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;display:block;background:#050b19}
+.scrollSlide .scrollOverlay{position:absolute;left:0;right:0;bottom:0;padding:90px 22px 26px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.86));pointer-events:none}
+.scrollSlide .scrollOverlay h3{font-size:24px;margin-bottom:6px}.scrollSlide .scrollOverlay p{max-width:700px;line-height:1.45;color:#eef2f8}.scrollSlide .scrollMeta{font-size:12px;opacity:.82;margin-top:8px}
+.scrollControls{position:absolute;right:14px;bottom:105px;z-index:5;display:flex;flex-direction:column;align-items:center;gap:10px}.scrollControl{width:48px;height:48px;border:0;border-radius:50%;background:#0009;color:#fff;display:grid;place-items:center;font-size:22px;backdrop-filter:blur(6px)}.scrollLikeCount{color:#fff;font-size:12px;font-weight:800;text-shadow:0 1px 3px #000}.scrollTitleCaption{position:absolute;left:18px;right:82px;bottom:24px;z-index:4;color:#fff}.scrollTitleCaption h3{font-size:24px;line-height:1.15;margin-bottom:6px;text-shadow:0 2px 5px #000}.scrollTitleCaption p{font-size:15px;line-height:1.42;color:#f1f4f9;text-shadow:0 2px 4px #000}.scrollTitleCaption .scrollAuthor{font-size:12px;opacity:.85;margin-top:7px}.scrollEmpty{height:100%;display:grid;place-items:center;color:#fff;text-align:center;padding:30px}
+body.scrollImmersive .top,body.scrollImmersive .bottom{display:none}
+body.scrollImmersive .main{height:100vh;position:fixed;inset:0;z-index:50}
+body.scrollImmersive #scroll{display:block!important;height:100vh;padding:0!important}
+body.scrollImmersive,body.scrollImmersive html{overflow:hidden}
+body.scrollImmersive #scroll .feed{height:100dvh;min-height:100vh;width:100vw;max-width:none;margin:0;padding:0}
+body.scrollImmersive #scroll .scrollSlide{width:100vw;height:100dvh;min-height:100vh;flex-basis:100dvh}
+.scrollTopBar{position:absolute;top:14px;left:14px;right:14px;z-index:10;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+.scrollBack,.scrollBrand{pointer-events:auto;border:0;background:#0008;color:#fff;border-radius:22px;padding:9px 13px;backdrop-filter:blur(8px);font-weight:800}
+.scrollRightControls{position:absolute;right:14px;bottom:120px;z-index:7;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrollControl{box-shadow:0 3px 12px #0006}
+.scrollControl.liked{color:#ff2147;background:#fff;transform:scale(1.05)}
+.scrollControl.saved{color:var(--gold);background:#111d3b}
+.scrollActionLabel{font-size:11px;color:#fff;text-shadow:0 2px 4px #000;margin-bottom:3px}
+.scrollCommentSheet{position:absolute;left:12px;right:82px;bottom:18px;z-index:8;background:#0009;border:1px solid #ffffff2b;border-radius:18px;padding:10px;backdrop-filter:blur(8px)}
+.scrollCommentSheet input{width:100%;border:0;border-radius:18px;padding:10px 12px;background:#fff;color:#111;outline:none}
+.scrollCommentPreview{max-height:80px;overflow:auto;margin-bottom:7px;color:#fff;font-size:12px}
+.scrollCommentPreview div{margin:3px 0}.scrollCommentPreview b{color:#fff}
+.homeComments{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.homeCommentList{max-height:90px;overflow:auto}.homeComments .comment{font-size:13px;margin:5px 0}.homeComments .commentRow{margin-top:8px}.homeFlowCard.clickable{cursor:pointer}.homeFlowMediaPlaceholder{height:220px;background:#07183f;color:#fff;display:grid;place-items:center;text-align:center;font-size:18px;font-weight:800}.homeFlowMediaPlaceholder span{display:block;font-size:42px;margin-bottom:8px}.homeFlowMedia{position:relative}.homeFlowMedia img{width:100%;max-height:420px;object-fit:cover;display:block}.homeFlowMedia .tapOverlay{position:absolute;inset:0;display:grid;place-items:center;background:#0002;color:#fff;font-size:42px;text-shadow:0 2px 8px #000;pointer-events:none}
+.homeViewer{position:fixed;inset:0;background:#000d;z-index:5000;display:none;align-items:center;justify-content:center;padding:16px}.homeViewer.show{display:flex}.homeViewerBox{width:min(900px,100%);max-height:94vh;background:#07183f;color:#fff;border-radius:22px;overflow:auto}.homeViewerBox video,.homeViewerBox img{width:100%;max-height:72vh;object-fit:contain;background:#000;display:block}.homeViewerBody{padding:16px}.homeViewerClose{float:right;border:0;background:#fff2;color:#fff;border-radius:18px;padding:8px 12px}
+.scrollEmpty .action{pointer-events:auto}
+.homeFlow{max-width:760px;margin:28px auto 0}.homeFlowTitle{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.homeFlowCard{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-bottom:14px;box-shadow:0 8px 24px #132d6b0b}.homeFlowCard .flowVideo{width:100%;max-height:520px;display:block;background:#07183f;object-fit:contain}.homeFlowBody{padding:16px}.homeFlowBody h3{font-size:19px}.homeFlowBody p{margin-top:6px;line-height:1.5}.homeFlowText{font-size:18px;line-height:1.55;white-space:pre-wrap}.homeFlowActions{display:flex;gap:8px;margin-top:12px}.homeFlowAction{border:0;background:#f0f3f9;border-radius:18px;padding:8px 12px}.homeFlowMediaLabel{font-size:12px;color:var(--muted);padding:10px 16px 0;font-weight:700}
+.labDevGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.devPrompt{min-height:190px!important}.devOutput{min-height:260px!important}.devStatus{padding:11px 13px;border-radius:13px;background:#f1f5fb;color:#33466f;font-size:13px;margin-top:10px}.devStatus.ok{background:#e9f8f0;color:#12633f}.devStatus.bad{background:#fff0f0;color:#a52f2f}
+@media(max-width:750px){#scroll .feed,.scrollSlide{height:100%}.labDevGrid{grid-template-columns:1fr}.homeFlow{margin-left:0;margin-right:0}}
+
+/* Clean social actions + Instagram-style comments */
+.navSvg{width:25px;height:25px;display:grid;place-items:center;font-size:25px;line-height:1}.navSvg svg{width:24px;height:24px;display:block}.navItem.active .navSvg{transform:translateY(-1px)}
+.scrollControl{font-size:0!important;background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.18);box-shadow:0 5px 18px rgba(0,0,0,.32)}.scrollControl svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.scrollControl.likeBtn.liked{color:#ff2147;background:rgba(255,255,255,.94)}.scrollControl.saveBtn.saved{color:#f5c43b;background:rgba(10,22,50,.86)}
+.scrollActionLabel{font-size:11px!important}
+.igComments{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.42);display:none;align-items:flex-end}.igComments.show{display:flex}.igCommentsPanel{width:100%;height:min(76vh,680px);background:#fff;border-radius:24px 24px 0 0;display:flex;flex-direction:column;box-shadow:0 -12px 40px rgba(0,0,0,.25);overflow:hidden}.igCommentsHeader{height:58px;display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid #edf0f5;font-weight:800}.igCommentsHeader button{position:absolute;right:14px;top:12px;border:0;background:#f2f4f8;width:34px;height:34px;border-radius:50%;font-size:18px}.igCommentsPost{padding:10px 18px 8px;color:#68758d;font-size:12px;border-bottom:1px solid #f0f2f6}.igCommentsList{flex:1;overflow:auto;padding:8px 18px 16px}.igComment{display:flex;gap:10px;padding:11px 0}.igCommentAvatar{width:34px;height:34px;border-radius:50%;background:#eaf0ff;color:#2454ae;display:grid;place-items:center;font-weight:800;flex:0 0 auto}.igCommentText{font-size:14px;line-height:1.35}.igCommentText b{margin-right:5px}.igCommentTime{display:block;color:#9aa5b5;font-size:11px;margin-top:3px}.igCommentEmpty{text-align:center;color:#8995a7;padding:50px 20px}.igCommentComposer{padding:10px 14px calc(10px + env(safe-area-inset-bottom));border-top:1px solid #edf0f5;display:flex;gap:8px;align-items:center;background:#fff}.igCommentComposer input{flex:1;border:1px solid #dfe4ec;border-radius:22px;padding:11px 14px;outline:none;background:#f7f8fb}.igCommentComposer button{border:0;background:#1769e0;color:#fff;border-radius:20px;padding:10px 16px;font-weight:800}.homeFlowAction{font-size:0}.homeFlowAction svg{width:20px;height:20px;vertical-align:middle}.homeFlowAction .actionCount{font-size:13px;vertical-align:middle;margin-left:5px}
+@media(max-width:750px){.igCommentsPanel{height:78vh}.scrollControl{width:50px;height:50px}}
+
+/* Final BMC Scroll interaction polish */
+#scroll .feed{height:100dvh!important;min-height:100dvh!important;width:100vw!important;overflow-y:auto!important;scroll-snap-type:y mandatory!important}
+#scroll .scrollSlide{width:100vw!important;height:100dvh!important;min-height:100dvh!important;flex:0 0 100dvh!important;border-radius:0!important}
+.scrollSlide .scrollMedia{width:100vw!important;height:100dvh!important;object-fit:cover!important}
+.scrollRightControls{position:absolute;right:12px;bottom:112px;z-index:9;display:flex;flex-direction:column;align-items:center;gap:7px}
+.scrollControl{width:52px;height:52px!important;display:grid;place-items:center;border-radius:50%;background:rgba(0,0,0,.46)!important;color:#fff;border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.scrollControl svg{width:27px;height:27px}
+.scrollControl.likeBtn.liked{color:#ff1744!important;background:rgba(255,255,255,.95)!important}
+.scrollControl.saveBtn.saved{color:#ffd34d!important}
+.scrollLikeCount{font-size:12px;font-weight:800;color:#fff;text-shadow:0 2px 5px #000;min-height:15px}
+.scrollActionLabel{font-size:11px!important;color:#fff;text-shadow:0 2px 5px #000}
+.homeFlowCard .homeMediaTap{position:relative;cursor:pointer}
+.homeFlowCard .homeMediaTap img,.homeFlowCard .homeMediaTap video{width:100%;max-height:430px;object-fit:contain;background:#0b1633;display:block}
+.homeTapHint{position:absolute;inset:auto 12px 12px auto;background:rgba(0,0,0,.58);color:#fff;border-radius:18px;padding:7px 11px;font-size:12px}
+
+
+/* Studio Content + polished navigation */
+.contentList{display:flex;flex-direction:column;gap:16px;margin-top:16px}
+.contentCard{background:#fff;border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:0 8px 24px #132d6b0b;display:grid;grid-template-columns:205px 1fr;gap:20px;align-items:center}
+.contentThumb{width:205px;height:145px;border-radius:22px;overflow:hidden;background:#eaf0fb;display:grid;place-items:center;color:#73809a;font-size:38px}
+.contentThumb img,.contentThumb video{width:100%;height:100%;object-fit:cover;display:block}
+.contentInfo h3{font-size:22px;line-height:1.15;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.contentMeta{color:var(--muted);font-size:15px;line-height:1.45;margin-bottom:14px}
+.contentActions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.contentAction{border:0;background:transparent;color:var(--text);display:flex;align-items:center;gap:7px;font-weight:650;padding:7px 2px}
+.contentAction svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.contentAction.featured svg{stroke:var(--gold2)}
+.contentAction.delete{color:var(--danger)}
+.contentAction.publish{background:#eaf1ff;color:#294b91;border-radius:18px;padding:10px 16px}
+.contentBadge{display:inline-flex;align-items:center;gap:5px;background:#eaf1fb;color:#68758d;border-radius:16px;padding:4px 9px;font-size:12px;margin-left:6px}
+.contentEmpty{background:#fff;border:1px solid var(--line);border-radius:24px;padding:35px;text-align:center;color:var(--muted)}
+.navSvg svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.navItem .navSvg{transition:transform .18s ease}
+.navItem.active .navSvg{transform:translateY(-1px)}
+@media(max-width:600px){.contentCard{grid-template-columns:118px 1fr;gap:14px;padding:14px;border-radius:24px}.contentThumb{width:118px;height:110px;border-radius:18px}.contentInfo h3{font-size:18px}.contentMeta{font-size:13px;margin-bottom:8px}.contentActions{gap:9px}.contentAction{font-size:13px}.contentAction svg{width:21px;height:21px}}
+/* Lower the immersive Scroll action rail slightly for a more natural TikTok layout */
+.scrollRightControls{bottom:84px!important}
+
+/* Study AI */
+.studyTabs .studyTab{border:0;background:transparent;border-radius:20px;padding:10px 14px;color:#5d6b82;font-weight:800;white-space:nowrap}.studyTabs .studyTab.active{background:#fff;color:var(--navy);box-shadow:0 2px 8px #132d6b14}.studyAiHeader{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.studyQuickRow{display:flex;gap:8px;overflow:auto;margin:10px 0 12px}.studyQuickRow button,.voiceBtn{border:1px solid var(--line);background:#fff;border-radius:18px;padding:9px 13px;white-space:nowrap}.studyChatControls,.aiVoiceControls{display:flex;gap:8px;align-items:center;margin:10px 0}.studyChatControls select,.aiVoiceControls select{flex:1;min-width:0;border:1px solid var(--line);border-radius:14px;padding:10px;background:#fff;color:var(--text)}
+
+/* Stable, gentle app navigation: no jump/slide when a tab is tapped */
+.view{opacity:1!important;transform:none!important;transition:none!important;will-change:auto!important}
+.navItem{transform:none!important;transition:color .18s ease,background .18s ease!important;outline:none;-webkit-tap-highlight-color:transparent}
+.navItem:active{transform:none!important;background:rgba(37,84,198,.06)}
+.navItem .navSvg{transform:none!important;transition:background .18s ease!important}
+.navItem.active .navSvg{transform:none!important}
+.navItem:focus,.navItem:focus-visible{outline:none}
+/* Keep tab rows stable on mobile instead of horizontally shifting to reveal the tapped item. */
+.subTabs,.aiTools,.studyTabs,.tabs{overflow:visible!important;scroll-behavior:auto!important;scroll-snap-type:none!important}
+.subTabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.subTab{min-width:0!important;width:100%;overflow:hidden;text-overflow:ellipsis}
+.aiTools{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+.aiTool{width:100%;min-width:0;white-space:normal;min-height:42px}
+.studyTabs{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+.studyTabs .studyTab{width:100%;min-width:0;white-space:normal}
+.tabs{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+.tabs .tab{width:100%;min-width:0}
+@media(min-width:700px){.aiTools{grid-template-columns:repeat(4,minmax(0,1fr))}.studyTabs{grid-template-columns:repeat(4,minmax(0,1fr))}.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* Final navigation icon design — gentle, creative, stable like a native app */
+.bottom{height:74px;overflow-x:auto;overflow-y:hidden;gap:2px;justify-content:space-around;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.navItem{min-width:58px;height:62px;padding:5px 5px 3px;gap:4px;color:#68758d;font-size:12px;font-weight:500;border-radius:16px;touch-action:manipulation}
+.navItem .navSvg{width:38px;height:34px;border-radius:15px;display:grid;place-items:center;background:transparent;transform:none!important}
+.navItem .navSvg svg{width:25px;height:25px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.navItem.active{color:#2454b7;font-weight:700;background:transparent}
+.navItem.active .navSvg{background:#edf3ff;transform:none!important}
+.navItem:active{transform:none!important;background:#f5f7fb}
+.navItem:focus,.navItem:focus-visible{outline:none}
+@media(max-width:750px){.bottom{height:70px}.navItem{min-width:48px;height:60px;font-size:11px}.navItem .navSvg{width:38px;height:33px}.navItem .navSvg svg{width:24px;height:24px}}
+
+</style>
+</head>
+<body>
+<div class="app">
+<div id="accountModal" class="accountModal" onclick="if(event.target===this)closeAccount()">
+  <div class="accountBox">
+    <div class="accountAvatar">BA</div>
+    <h2 style="text-align:center">BMC Account</h2>
+    <p class="muted" style="text-align:center;margin-top:5px">Creator account</p>
+    <div id="accountCeoBadge" style="text-align:center"></div>
+    <div class="accountActions">
+      <button class="accountLab" onclick="openCEOVerification()">🔐 CEO / LAB</button>
+      <button class="accountClose" onclick="closeAccount()">Close</button>
+    </div>
+  </div>
+</div>
+
+<header class="top">
+  <div class="logoWrap"><div class="logo">BMC</div><div class="brand"><h1>BMC Scroll 📜</h1><p>Your world. Your scroll.</p></div></div>
+  <button class="avatar" id="accountBtn" onclick="openAccount()">BA</button>
+</header>
+
+<main class="main">
+<section id="home" class="view active">
+  <div class="hero">
+    <div class="eyebrow">BADER MEDIA CENTER</div>
+    <h2>Your world.<br>Your scroll.</h2>
+    <p>One immersive feed for everything BMC — media, study material and game breaks.</p>
+    <button class="goldBtn" onclick="go('scroll')">📜 Start scrolling →</button>
+  </div>
+  <section class="homeFlow">
+    <div class="homeFlowTitle"><h2 class="sectionTitle" style="margin:0">🏠 BMC Home Flow</h2><button class="action" onclick="renderHomeFlow()">↻ Refresh</button></div>
+    <div id="homeFlowList"></div>
+  </section>
+  <h2 class="sectionTitle">Explore BMC</h2>
+  <div class="grid">
+    <div class="feature" onclick="go('scroll')"><div class="icon">🎬</div><h3>Videos</h3><p>Full-length uploads</p></div>
+    <div class="feature" onclick="go('scroll')"><div class="icon">📱</div><h3>Shorts</h3><p>Quick vertical clips</p></div>
+    <div class="feature" onclick="go('scroll')"><div class="icon">🖼️</div><h3>Images</h3><p>Visual posts</p></div>
+    <div class="feature" onclick="go('study')"><div class="icon">📚</div><h3>Study</h3><p>Notes and learning material</p></div>
+    <div class="feature" onclick="go('games')"><div class="icon">🎮</div><h3>Games</h3><p>Quick breaks between work</p></div>
+    <div class="feature" onclick="go('ai')"><div class="icon">🤖</div><h3>BMC AI</h3><p>Your AI assistant</p></div>
+  </div>
+  <div class="customFeatureHome" style="max-width:1100px;margin:28px auto 0"><h2 class="sectionTitle" style="margin-left:0;margin-right:0">🧩 BMC Features</h2><div id="customFeatureHomeGrid" class="grid"></div></div>
+</section>
+
+<section id="scroll" class="view">
+  <div id="feed" class="feed" aria-label="BMC endless vertical scroll"></div>
+</section>
+
+<section id="search" class="view">
+  <div class="panel">
+    <h2>Search BMC Scroll</h2><p class="muted">Find posts, study material and creators.</p>
+    <div class="searchBox" style="margin-top:15px"><input id="searchInput" placeholder="Search BMC..." onkeydown="if(event.key==='Enter')doSearch()"><button onclick="doSearch()">Search</button></div>
+  </div>
+  <div id="results" class="results"></div>
+</section>
+
+<section id="study" class="view">
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div><h2>📚 BMC Study</h2><p class="muted">Notes, documents and Study AI — built for maths, physics, chemistry and more.</p></div>
+      <button class="createBtn" onclick="studyTab('chat')">🧠 Study AI</button>
+    </div>
+    <div class="studyTabs" style="display:flex;gap:8px;overflow:auto;margin:18px 0 16px;padding:4px;background:#edf2fa;border-radius:24px">
+      <button class="studyTab active" onclick="studyTab('chat',this)">🧠 Study AI</button>
+      <button class="studyTab" onclick="studyTab('history',this)">↶ History</button>
+      <button class="studyTab" onclick="studyTab('import',this)">📥 Import</button>
+      <button class="studyTab" onclick="studyNewConversation(this)">＋ New conversation</button>
+    </div>
+    <div id="studyAiPane" class="studyAiPane">
+      <div class="studyAiHeader"><div><h3>Study AI</h3><p class="muted">Ask for formulas, solve exercises step by step, explain reactions, or review a lesson.</p></div><button class="action" onclick="studyNewConversation()">＋ New conversation</button></div>
+      <div class="studyQuickRow"><button onclick="studyQuick('Explain this maths exercise step by step and show the formulas used.')">∑ Maths</button><button onclick="studyQuick('Explain this chemistry question, including the relevant equations and units.')">⚗ Chemistry</button><button onclick="studyQuick('Help me understand this physics exercise step by step with the correct formulas and units.')">⚡ Physics</button></div>
+      <div id="studyMessages" class="aiMessages"><div class="bubble ai">👋 Hi! I’m Study AI. Give me a lesson, formula, exercise or question.</div></div>
+      <div class="studyChatControls"><select id="studyVoiceChoice" aria-label="Study AI voice"><option value="">Voice: System default</option></select><button class="voiceBtn" onclick="startStudyVoice()">🎙 Speak</button></div>
+      <div class="aiInput"><input id="studyInput" placeholder="Ask Study AI..." onkeydown="if(event.key==='Enter')sendStudyAI()"><button onclick="sendStudyAI()">➤</button></div>
+    </div>
+    <div id="studyHistoryPane" class="studyAiPane" style="display:none"><div class="studyAiHeader"><div><h3>↶ Study AI History</h3><p class="muted">Open an earlier Study AI conversation or start a fresh one.</p></div><button class="action" onclick="studyNewConversation()">＋ New conversation</button></div><div id="studyHistoryList" class="historyList"></div></div>
+    <div id="studyImportPane" class="studyAiPane" style="display:none"><div class="studyAiHeader"><div><h3>📥 Import into Study AI</h3><p class="muted">Import a PDF, image or document and ask Study AI about it.</p></div></div><input id="studyAiImportFile" type="file" accept="image/*,.pdf,.txt,.md,.csv,.json,.doc,.docx" class="fileInput" style="width:100%" onchange="handleStudyImport(this)"><div id="studyImportStatus" class="uploadStatus"></div><img id="studyImportPreview" style="display:none;max-width:100%;max-height:280px;border-radius:15px;margin-top:10px" alt="Study import preview"><textarea id="studyImportPrompt" style="width:100%;margin-top:12px;min-height:100px;border:1px solid var(--line);border-radius:14px;padding:12px" placeholder="What should Study AI do with this import?"></textarea><button class="primary" style="padding:11px 15px;margin-top:10px" onclick="askStudyImport()">Ask Study AI</button></div>
+    <div class="studyGrid" style="margin-top:22px">
+      <div class="studyCard"><h3>📝 Notes</h3><p class="muted">Create and save personal notes.</p><textarea id="noteText" style="width:100%;margin-top:12px;min-height:130px;border:1px solid var(--line);border-radius:12px;padding:12px"></textarea><button class="primary" style="padding:11px 15px;margin-top:10px" onclick="saveNote()">Save note</button></div>
+      <div class="studyCard"><h3>📄 Documents</h3><p class="muted">Add a study document to your local BMC library.</p><input class="fileInput" id="studyFile" type="file" accept=".pdf,.txt,.doc,.docx" style="width:100%;margin-top:12px"><button class="primary" style="padding:11px 15px;margin-top:10px" onclick="saveStudyFile()">Add document</button><div id="studyList" style="margin-top:15px"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="games" class="view">
+  <h2 class="sectionTitle" style="margin-top:0">🎮 Game Breaks</h2>
+  <div class="gameGrid">
+    <div class="gameCard"><h3>🐍 Snake Mini</h3><p class="muted">A tiny break game.</p><div class="gameArea"><button onclick="startSnake()">Start Snake</button><div id="snakeArea"></div></div></div>
+    <div class="gameCard"><h3>🎯 Tap Challenge</h3><p class="muted">Tap the target as many times as you can in 10 seconds.</p><div class="gameArea"><button onclick="startTap()">Start</button><div id="tapArea"></div></div></div>
+  </div>
+</section>
+
+<section id="ai" class="view">
+  <div class="aiPanel">
+    <h2>🤖 BMC AI</h2>
+    <p class="muted">Study help, content ideas, explanations — by typing or using the tools below.</p>
+    <div class="subTabs">
+      <button class="subTab active" data-ai="chat" onclick="aiTab('chat',this)">💬 Chat</button>
+      <button class="subTab" data-ai="game" onclick="aiTab('game',this)">🎮 Game creator</button>
+      <button class="subTab" data-ai="content" onclick="aiTab('content',this)">🎨 Content AI</button>
+    </div>
+    <div id="aiPaneChat" class="aiPane active">
+       <div class="aiTools"><button class="aiTool active" onclick="aiToolTab('history',this)">↶ History</button><button class="aiTool" onclick="newAIConversation()">＋ New conversation</button><button class="aiTool" onclick="aiToolTab('chatTools',this)">Chat</button><button class="aiTool" onclick="aiToolTab('study',this)">Study</button><button class="aiTool" onclick="aiToolTab('ideas',this)">Ideas</button><button class="aiTool" onclick="aiToolTab('import',this)">📥 Import</button><button class="aiTool" onclick="aiToolTab('image',this)">🖼️ Create image</button></div>
+       <div id="aiMessages" class="aiMessages"><div class="bubble ai">Hello! I am BMC AI. Ready to assist.</div></div>
+       <div id="aiImportPanel" style="display:none" class="panel"><h3>📥 Import into BMC AI</h3><p class="muted" style="margin:6px 0 12px">Import an image, PDF or document and ask BMC AI about it.</p><input id="aiImportFile" type="file" accept="image/*,.pdf,.txt,.md,.csv,.json,.doc,.docx" class="fileInput" style="width:100%" onchange="handleAIImport(this)"><div id="aiImportStatus" class="uploadStatus"></div><img id="aiImportPreview" style="display:none;max-width:100%;max-height:260px;border-radius:15px;margin-top:10px" alt="Imported preview"><textarea id="aiImportPrompt" style="width:100%;margin-top:12px;min-height:90px;border:1px solid var(--line);border-radius:14px;padding:12px" placeholder="What should BMC AI do with this import?"></textarea><button class="primary" style="padding:11px 15px;margin-top:10px" onclick="askAboutImport()">Ask BMC AI</button></div>
+       <div id="aiImagePanel" style="display:none" class="panel"><h3>🖼️ BMC AI Image Creation</h3><p class="muted" style="margin:6px 0 12px">Describe the image you want BMC AI to create.</p><textarea id="aiImagePrompt" style="width:100%;min-height:110px;border:1px solid var(--line);border-radius:14px;padding:12px" placeholder="Example: A cinematic BMC Scroll launch poster, navy and gold, professional newsroom style"></textarea><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><select id="aiImageRatio" style="flex:1;min-width:150px;border:1px solid var(--line);border-radius:12px;padding:11px"><option value="1:1">1:1 Square</option><option value="16:9">16:9 Landscape</option><option value="9:16">9:16 Portrait</option><option value="4:3">4:3</option></select><select id="aiImageSize" style="flex:1;min-width:120px;border:1px solid var(--line);border-radius:12px;padding:11px"><option>1K</option><option>2K</option><option>4K</option></select></div><button class="primary" style="padding:12px 18px;margin-top:12px" onclick="generateAIImage()">✨ Generate image</button><div id="aiImageStatus" class="muted" style="margin-top:10px"></div><img id="aiGeneratedImage" style="display:none;width:100%;max-height:520px;object-fit:contain;border-radius:18px;margin-top:12px;background:#f3f5f9" alt="Generated by BMC AI"><button id="aiUseImage" class="action" style="display:none;margin-top:10px" onclick="useGeneratedImageInCreate()">Use this image in Create</button></div>
+       <div class="aiVoiceControls"><select id="aiVoiceChoice" aria-label="BMC AI voice"><option value="">Voice: System default</option></select><button class="voiceBtn" onclick="startAIVoice()">🎙 Speak</button><button class="voiceBtn" onclick="speakLastAI()">🔊 Read</button></div><div class="aiInput"><input id="aiInput" placeholder="Ask BMC AI..." onkeydown="if(event.key==='Enter')sendAI()"><button onclick="sendAI()">➤</button></div>
+     </div><div id="aiPaneGame" class="aiPane">
+      <div class="aiEmpty"><div class="spark">🎮</div><h2>Game Creator</h2><p class="muted" style="margin:8px 0 15px">Describe a simple game and BMC AI will build a ready-to-preview HTML game.</p><input id="gamePrompt" class="searchBox" style="padding:12px;border:1px solid var(--line);border-radius:14px" placeholder="Example: a tap game with a score"><button class="primary" style="padding:12px 18px;margin-top:10px" onclick="createGameFromPrompt()">Create game</button></div>
+      <iframe id="aiGamePreview" class="codePreview" title="Game preview"></iframe>
+    </div>
+    <div id="aiPaneContent" class="aiPane">
+      <div class="aiEmpty"><div class="spark">🎨</div><h2>Content AI</h2><p class="muted" style="margin:8px 0 15px">Generate titles, captions and short-form ideas for BMC Scroll.</p><input id="contentTopic" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:14px" placeholder="Topic or niche"><button class="primary" style="padding:12px 18px;margin-top:10px" onclick="generateContentIdeas()">Generate ideas</button><div id="contentOutput" style="width:100%;margin-top:16px;text-align:left"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="studio" class="view">
+  <div class="studio">
+    <div class="studioHead"><div><h2>⚙️ Creator Desktop</h2><p class="muted">Create, publish and manage your BMC content.</p><div id="studioCeoTools" class="studioCeoTools" style="display:none"><span class="ceoBadge">👑 GOLDEN CEO • VERIFIED</span><button class="ceoLabBtn" onclick="go('lab')">🧪 LAB</button></div></div><button class="createBtn" onclick="openCreate()">＋ Create</button></div>
+    <div class="tabs"><button class="tab active" onclick="studioTab('dashboard',this)">Dashboard</button><button class="tab" onclick="studioTab('content',this)">Content</button><button class="tab" onclick="studioTab('aiStudio',this)">AI Studio</button><button class="tab" onclick="studioTab('aiConnect',this)">🔑 AI Connection</button></div>
+    <div id="studioDashboard" class="studioPane">
+      <div class="metricGrid"><div class="metric"><small>＋ Posts</small><strong id="metricPosts">0</strong></div><div class="metric"><small>◉ Views</small><strong id="metricViews">0</strong></div><div class="metric"><small>♡ Likes</small><strong id="metricLikes">0</strong></div><div class="metric"><small>◯ Comments</small><strong id="metricComments">0</strong></div><div class="metric"><small>🔖 Saves</small><strong id="metricSaves">0</strong></div></div>
+      <div class="topPosts"><h2>Top posts by views</h2><div id="topPosts" style="margin-top:15px"></div></div>
+      <div class="topPosts" style="margin-top:14px"><h2>🧩 Custom features</h2><p class="muted" style="margin-top:4px">Features saved from CEO LAB appear here.</p><div id="customFeatureList"></div></div>
+    </div>
+    <div id="studioContent" class="studioPane" style="display:none">
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div><h2>Your Content</h2><p class="muted" style="margin-top:4px">Manage everything you have published to BMC Scroll.</p></div>
+          <button class="createBtn" onclick="openCreate()">＋ Create</button>
+        </div>
+        <div id="studioContentList" class="contentList"></div>
+      </div>
+    </div>
+    <div id="studioAiStudio" class="studioPane" style="display:none"><div class="panel"><h2>🤖 AI Studio</h2><p class="muted">Open BMC AI to use Chat, Game Creator and Content AI.</p><button class="createBtn" style="margin-top:14px" onclick="go('ai')">Open BMC AI →</button></div></div>
+     <div id="studioAiConnect" class="studioPane" style="display:none"><div class="aiConnectCard"><h2>🔑 Connect BMC AI</h2><p class="muted" style="margin-top:5px">Each user can connect their own Gemini API key. BMC Scroll stores the key only in this browser and uses it for that user's BMC AI requests.</p><div id="aiConnectCeoNote" class="labNotice" style="display:none;margin-top:14px">👑 <b>Golden CEO mode:</b> your CEO account does not need the normal user sign-in flow. You can connect a CEO key here if you want live Gemini responses.</div><div class="aiKeyRow" style="margin-top:14px"><input id="userGeminiKey" type="password" autocomplete="off" placeholder="Paste your Gemini API key here"></div><div class="aiConnectActions"><button class="primary" style="padding:11px 15px" onclick="verifyAndConnectAI()">✓ Verify & Connect</button><button class="action" onclick="disconnectAI()">Disconnect</button><button class="action" onclick="go('ai')">Open BMC AI →</button></div><div id="aiConnectStatus" class="aiConnectStatus">⚪ Not connected</div><p class="aiConnectHint">Your key is not hard-coded into BMC Scroll. Do not paste someone else's key. If you publish this HTML, each user should use their own restricted Gemini key.</p></div></div>
+  </div>
+</section>
+
+<div id="createModal" style="display:none;position:fixed;inset:0;background:#07183f88;z-index:3000;align-items:center;justify-content:center;padding:0">
+  <div class="panel modalWide createDesktopPanel">
+    <div class="createHeader"><div><h2>New post</h2><p class="muted">Create for BMC Scroll.</p></div><button class="action" onclick="closeCreate()">✕</button></div>
+    <div class="createSection"><label>Type</label><div class="createTypeGrid createTypeGridNew">
+      <button class="createType active" data-create="image" onclick="createType('image',this)">🖼️ Image</button><button class="createType" data-create="video" onclick="createType('video',this)">🎬 Video</button><button class="createType" data-create="short" onclick="createType('short',this)">📱 Short</button><button class="createType" data-create="study" onclick="createType('study',this)">📚 Study material</button><button class="createType" data-create="game" onclick="createType('game',this)">🎮 Game break</button>
+    </div></div>
+    <div class="createField"><div class="createLabel"><label for="createTitle">Title</label><button onclick="aiFillCreate('title')">✨ AI</button></div><input id="createTitle" placeholder=""></div>
+    <div class="createField"><div class="createLabel"><label for="createCaption">Caption</label><button onclick="aiFillCreate('caption')">✨ AI</button></div><textarea id="createCaption" placeholder=""></textarea></div>
+    <div class="createField"><div class="createLabel"><label for="createCategory">Category</label><button onclick="aiFillCreate('category')">✨ AI</button></div><select id="createCategory"><option>general</option><option>entertainment</option><option>education</option><option>technology</option><option>gaming</option><option>news</option><option>art</option><option>music</option><option>science</option><option>other</option></select></div>
+    <div class="createField"><div class="createLabel"><label for="createTags">Tags (comma separated)</label><button onclick="aiFillCreate('tags')">✨ AI</button></div><input id="createTags" placeholder=""></div>
+    <div id="createFileWrap" class="createUpload"><label>Media file</label><label class="uploadBox"><span>⇧</span><span id="createFileLabel">Image, video, PDF or document</span><input id="createFile" type="file" accept="image/*,video/*,.pdf,.txt,.md,.doc,.docx" onchange="handleCreateUpload('media',this)"></label><div id="createMediaStatus" class="uploadStatus"></div></div>
+    <div class="createUpload"><label>Thumbnail <span class="muted">(optional)</span></label><label class="uploadBox"><span>⇧</span><span>Cover image shown in the grids</span><input id="createThumbnail" type="file" accept="image/*" onchange="handleCreateUpload('thumbnail',this)"></label><div id="createThumbnailStatus" class="uploadStatus"></div></div>
+    <div class="createUpload"><label>🎵 Sound <span class="muted">(optional)</span></label><label class="uploadBox"><span>⇧</span><span>Use only music you have the rights to</span><input id="createSound" type="file" accept="audio/*" onchange="handleCreateUpload('sound',this)"></label><div id="createSoundStatus" class="uploadStatus"></div></div>
+    <div id="createCodeWrap" class="createCodeOptional" style="display:none"><div class="createField"><label>HTML / CSS / JavaScript</label><textarea id="createCode" class="codeLarge" placeholder="Paste complete HTML/CSS/JS here..."></textarea><button class="primary" style="padding:11px 15px;margin-top:8px" onclick="previewCreateCode()">Preview code</button><iframe id="createCodePreview" class="codePreview" title="Code preview"></iframe></div></div>
+    <div class="visibilityCard"><h3>Who can see this?</h3><div class="visibilityChoices"><button id="visPublic" class="visibilityChoice active" onclick="setVisibility('public')">🌍 <b>Public</b><small>Everyone on BMC Scroll</small></button><button id="visPrivate" class="visibilityChoice" onclick="setVisibility('private')">🔒 <b>Private</b><small>Only you can see it</small></button></div><div class="toggleRow"><span>Show in The Scroll 📜</span><button class="toggle on" id="toggleScroll" onclick="toggleCreateSetting('showInScroll',this)"><i></i></button></div><div class="toggleRow"><span>Comments enabled 💬</span><button class="toggle on" id="toggleComments" onclick="toggleCreateSetting('comments',this)"><i></i></button></div><div class="toggleRow"><span>Featured ⭐</span><button class="toggle" id="toggleFeatured" onclick="toggleCreateSetting('featured',this)"><i></i></button></div></div>
+    <div class="createActions"><button class="primary createPublish" onclick="publishCreate()">Publish</button><button class="action createDraft" onclick="saveCreateDraft()">Save as draft</button><button class="action createCancel" onclick="closeCreate()">Cancel</button></div><p class="createNoLimits">No artificial video-size, text-length or post-count limits are imposed by this interface. Actual storage is still limited by the browser/device.</p>
+  </div>
+</div>
+<section id="lab" class="view">
+  <div class="lab">
+    <div id="labLocked" class="locked">
+      <div style="font-size:42px">🔐</div><h2>CEO LAB</h2><p class="muted" style="margin:8px 0 16px">Restricted to the authorized BMC CEO account.</p>
+      <input id="labEmail" type="email" placeholder="CEO email" style="width:min(100%,420px);padding:12px;border:1px solid var(--line);border-radius:12px">
+      <br><button class="primary" style="padding:12px 20px;margin-top:10px" onclick="unlockLab()">Unlock LAB</button>
+    </div>
+    <div id="labArea" class="labArea">
+      <div class="labCard"><h2>🧪 BMC Feature LAB</h2><p class="muted">CEO-only feature editor. Write HTML/CSS/JS below and preview it safely inside a sandboxed frame.</p></div>
+      <div class="labCard">
+        <h3>➕ Add Feature by HTML</h3>
+        <div class="labNotice">You can save multiple custom BMC features. Each feature can contain HTML, CSS and JavaScript and is previewed inside a sandboxed frame.</div>
+        <input id="featureName" placeholder="Feature name (optional)" style="margin-top:10px">
+        <textarea id="featureCode" class="code" placeholder="Paste your HTML/CSS/JS feature here..."></textarea>
+        <div class="labActions" style="margin-top:10px"><button class="primary" style="padding:11px 15px" onclick="previewFeature()">Preview</button><button class="primary" style="padding:11px 15px" onclick="saveFeature()">Save Feature</button><button class="primary danger" style="padding:11px 15px" onclick="clearFeature()">Clear</button></div>
+      </div>
+      <div class="labCard">
+        <h3>🧠 BMC AI Train</h3>
+        <p class="muted" style="margin:5px 0 12px">CEO-only AI behavior settings. Tell BMC AI its personality, rules, language and how it should respond.</p>
+        <div class="labNotice">These instructions are saved on this browser and are included whenever BMC AI answers. For a public production AI, send them through your secure backend so every user receives the same trained behavior.</div>
+        <div class="form" style="margin-top:12px">
+          <input id="aiTrainName" placeholder="AI identity / name (e.g. BMC AI)">
+          <textarea id="aiTrainPersona" placeholder="Personality / role... e.g. You are BMC AI, the official helpful assistant of BMC Scroll."></textarea>
+          <textarea id="aiTrainRules" placeholder="Rules / behavior... e.g. Be helpful, honest, concise, explain clearly, never pretend to know something you don't know."></textarea>
+          <textarea id="aiTrainLanguage" placeholder="Language rules... e.g. Answer in the user's language. Support English, Arabic and Darija when appropriate."></textarea>
+          <textarea id="aiTrainExtra" placeholder="Extra instructions... Anything else you want BMC AI to remember about how it should behave."></textarea>
+          <div class="labActions"><button class="primary" style="padding:11px 15px" onclick="saveAITraining()">💾 Save AI Training</button><button class="primary" style="padding:11px 15px" onclick="loadAITraining(true)">↻ Reload</button><button class="primary danger" style="padding:11px 15px" onclick="clearAITraining()">Clear Training</button></div>
+          <div id="aiTrainStatus" class="labNotice" style="display:none"></div>
+        </div>
+      </div>
+      <div class="labCard">
+        <h3>🚀 Develop with AI</h3>
+        <p class="muted">Tell BMC AI what you want to add to BMC Scroll. It will generate the HTML/CSS/JS, show a preview, and can publish the feature directly into the app.</p>
+        <div class="labNotice">🤖 Example: “Build a creator leaderboard with gold badges, search and a refresh button. Put it on the BMC Home page.”</div>
+        <textarea id="devAiPrompt" class="devPrompt" placeholder="Describe exactly what you want BMC Scroll to build...
+
+You can describe the design, buttons, behavior, where it should appear, and how it should work."></textarea>
+        <div class="labActions" style="margin-top:10px"><button class="primary" style="padding:12px 16px" onclick="developWithAI(false)">🤖 Build & Preview</button><button class="primary" style="padding:12px 16px" onclick="developWithAI(true)">🚀 Build & Publish to BMC Scroll</button><button class="action" onclick="clearDevAI()">Clear</button></div>
+        <div id="devAiStatus" class="devStatus">Ready — describe your feature above.</div>
+        <div class="labDevGrid" style="margin-top:14px">
+          <div><label style="display:block;font-weight:800;margin-bottom:7px">Generated feature code</label><textarea id="devAiCode" class="devOutput code" placeholder="BMC AI's generated HTML/CSS/JS will appear here..."></textarea></div>
+          <div><label style="display:block;font-weight:800;margin-bottom:7px">Live preview</label><iframe id="devAiPreview" class="preview" sandbox="allow-scripts allow-forms"></iframe></div>
+        </div>
+        <div class="labActions" style="margin-top:10px"><input id="devAiName" placeholder="Feature name (optional)" style="flex:1;min-width:200px"><button class="primary" style="padding:11px 15px" onclick="publishDevelopedFeature()">📦 Publish current code</button></div>
+      </div>
+      <div class="labCard"><h3>👁️ Preview</h3><iframe id="featurePreview" class="preview" sandbox="allow-scripts"></iframe></div>
+      <div class="labCard"><h3>📦 Saved Features</h3><div id="featureList"></div></div>
+      <div class="labCard"><button class="primary danger" style="padding:11px 15px" onclick="lockLab()">Lock CEO LAB</button></div>
+    </div>
+  </div>
+</section>
+<div id="homeViewer" class="homeViewer" onclick="if(event.target===this)closeHomeViewer()"><div class="homeViewerBox"><button class="homeViewerClose" onclick="closeHomeViewer()">✕ Close</button><div id="homeViewerMedia"></div><div class="homeViewerBody"><h2 id="homeViewerTitle"></h2><p id="homeViewerText" style="margin-top:7px;line-height:1.5;color:#dce4f4"></p><div class="homeFlowActions" style="margin-top:12px"><button id="homeViewerLike" class="homeFlowAction"></button><button class="homeFlowAction" onclick="shareScrollPost(window._homeViewerId)">↗ Share</button></div></div></div></div>
+<div id="featureRunner" style="display:none;position:fixed;inset:0;background:#07183fcc;z-index:3500;align-items:center;justify-content:center;padding:16px">
+  <div class="panel modalWide" style="height:90vh;display:flex;flex-direction:column"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><h2>🧩 Feature</h2><button class="action" onclick="closeFeatureRunner()">✕ Close</button></div><iframe id="featureRunnerFrame" style="flex:1;width:100%;border:1px solid var(--line);border-radius:15px;background:#fff" sandbox="allow-scripts allow-forms"></iframe></div>
+</div>
+</main>
+
+<nav class="bottom" aria-label="Main navigation">
+  <button class="navItem active" data-view="home" onclick="go('home')" aria-label="Home"><span class="navSvg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.6 12 3.7l8.5 6.9"/><path d="M5.6 9.7v10.6h12.8V9.7"/><path d="M9.1 20.3v-5.6h5.8v5.6"/></svg></span>Home</button>
+  <button class="navItem" data-view="scroll" onclick="go('scroll')" aria-label="Scroll"><span class="navSvg"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3.2" width="12" height="17.6" rx="2.8"/><path d="M9 7.7h6M9 11.7h6M9 15.7h4.1"/></svg></span>Scroll</button>
+  <button class="navItem" data-view="search" onclick="go('search')" aria-label="Search"><span class="navSvg"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.4" cy="10.4" r="6.2"/><path d="m15 15 5.1 5.1"/></svg></span>Search</button>
+  <button class="navItem" data-view="study" onclick="go('study')" aria-label="Study"><span class="navSvg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.9A2.4 2.4 0 0 1 6.4 3.5H11v16.2H6.4A2.4 2.4 0 0 0 4 22V5.9Z"/><path d="M20 5.9a2.4 2.4 0 0 0-2.4-2.4H13v16.2h4.6A2.4 2.4 0 0 1 20 22V5.9Z"/><path d="M12 3.5v16.2"/></svg></span>Study</button>
+  <button class="navItem" data-view="games" onclick="go('games')" aria-label="Games"><span class="navSvg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.1 8h9.8a4.1 4.1 0 0 1 3.8 5.3l-1 3.4a2.2 2.2 0 0 1-4.1.5L12 14.9l-3.6 2.3a2.2 2.2 0 0 1-4.1-.5l-1-3.4A4.1 4.1 0 0 1 7.1 8Z"/><path d="M7.2 10.7v3.6M5.4 12.5H9"/><circle cx="16.5" cy="11.4" r=".75"/><circle cx="18.3" cy="13.2" r=".75"/></svg></span>Games</button>
+  <button class="navItem" data-view="ai" onclick="go('ai')" aria-label="AI"><span class="navSvg"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="6.5" width="14" height="12" rx="3.2"/><path d="M8.5 4.2v2.3M15.5 4.2v2.3M9 11.5h.01M15 11.5h.01M9 15h6"/><path d="M3.2 11.5H5M19 11.5h1.8"/></svg></span>AI</button>
+  <button class="navItem" data-view="studio" onclick="go('studio')" aria-label="Studio"><span class="navSvg"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6.2" height="6.2" rx="1.4"/><rect x="13.8" y="4" width="6.2" height="6.2" rx="1.4"/><rect x="4" y="13.8" width="6.2" height="6.2" rx="1.4"/><rect x="13.8" y="13.8" width="6.2" height="6.2" rx="1.4"/></svg></span>Studio</button>
+  <button class="navItem" id="labNav" data-view="lab" onclick="go('lab')" style="display:none" aria-label="LAB"><span class="navSvg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3.5v5.8l-3.7 7.1A3.2 3.2 0 0 0 8.1 21h7.8a3.2 3.2 0 0 0 2.8-4.6L15 9.3V3.5"/><path d="M7.4 14.7h9.2"/><path d="m18.5 3.1.4 1.2 1.2.4-1.2.4-.4 1.2-.4-1.2-1.2-.4 1.2-.4.4-1.2Z"/></svg></span>LAB</button>
+</nav>
+<div id="toast" class="toast"></div>
+<div id="igComments" class="igComments" onclick="if(event.target===this)closeComments()"><div class="igCommentsPanel" role="dialog" aria-label="Comments"><div class="igCommentsHeader">Comments<button onclick="closeComments()" aria-label="Close comments">×</button></div><div id="igCommentsPost" class="igCommentsPost"></div><div id="igCommentsList" class="igCommentsList"></div><div class="igCommentComposer"><input id="igCommentInput" placeholder="Add a comment…" maxlength="2000" onkeydown="if(event.key==='Enter')submitIGComment()"><button onclick="submitIGComment()">Post</button></div></div></div>
+</div>
+
+<script>
+const CEO_EMAIL="baderbusiness15@gmail.com";
+const STORE={posts:"bmc_scroll_posts",features:"bmc_scroll_features",notes:"bmc_scroll_notes",docs:"bmc_scroll_docs",aiTrain:"bmc_ai_train"};
+// Production AI should use a server-side proxy such as /api/bmc-ai. Never put a private API key in this public HTML file.
+const BMC_AI_ENDPOINT="/api/bmc-ai";
+let feedFilter="all", createKind="text";
+const defaultPosts=[
+ {id:"welcome",type:"image",title:"Welcome to BMC Scroll",text:"Your world. Your scroll. Welcome to Bader Media Center.",author:"BMC",likes:0,comments:[],views:175},
+ {id:"bmc-ai",type:"image",title:"BMC AI",text:"Chat, Game Creator and Content AI — all inside BMC.",author:"BMC Studio",likes:0,comments:[],views:90}
+];
+function get(k,d){try{const x=localStorage.getItem(k);return x===null?d:JSON.parse(x)}catch(e){return d}}
+function set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){toast("Browser storage is full. Try removing old local data.");return false}}
+function toast(t){const x=document.getElementById("toast");x.textContent=t;x.style.display="block";clearTimeout(window._toast);window._toast=setTimeout(()=>x.style.display="none",2400)}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function safeId(s){return String(s).replace(/[^a-zA-Z0-9_-]/g,"")}
+const APP_URL="https://bmcscrolloriginal.com/";
+const viewScrollPositions={};
+let activeView="home";
+function go(id){
+ const v=document.getElementById(id);if(!v)return;
+ if(id==="lab"&&!isCEO()){document.getElementById("labLocked").style.display="block";document.getElementById("labArea").classList.remove("unlocked")}
+ const previous=document.getElementById(activeView);
+ if(previous&&previous!==v)viewScrollPositions[activeView]=previous.scrollTop;
+ activeView=id;
+ document.body.classList.toggle("scrollImmersive",id==="scroll");
+ document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+ v.classList.add("active");
+ document.querySelectorAll(".navItem").forEach(b=>b.classList.toggle("active",b.dataset.view===id));
+ requestAnimationFrame(()=>{if(id!=="scroll"&&viewScrollPositions[id]!=null)v.scrollTop=viewScrollPositions[id]||0});
+ if(id==="home")renderHomeFlow();
+ if(id==="scroll")renderFeed();
+ if(id==="study")renderStudy();
+ if(id==="studio")renderStudio();
+ if(id==="lab")renderFeatures();
+}
+
+function openAccount(){
+ document.getElementById("accountCeoBadge").innerHTML=isCEO()?'<span class="ceoBadge">👑 GOLDEN CEO • VERIFIED</span>':'<span class="muted" style="font-size:12px">Standard creator account</span>';
+ const labBtn=document.querySelector(".accountLab");
+ if(labBtn){labBtn.textContent=isCEO()?"🧪 Open CEO LAB":"🔐 Unlock CEO LAB";}
+ document.getElementById("accountModal").classList.add("show");
+}
+function closeAccount(){document.getElementById("accountModal").classList.remove("show")}
+function openCEOVerification(){
+ closeAccount();
+ go("lab");
+ if(!isCEO()){
+  const input=document.getElementById("labEmail");
+  setTimeout(()=>{if(input){input.focus();input.scrollIntoView({behavior:"smooth",block:"center"})}},80);
+ }
+}
+function allPosts(){const p=get(STORE.posts,defaultPosts);p.forEach(x=>{if(!Array.isArray(x.comments))x.comments=[]});return p}
+function savePosts(p){return set(STORE.posts,p)}
+async function renderHomeFlow(){
+ const box=document.getElementById('homeFlowList');if(!box)return;
+ const source=allPosts().filter(p=>(p.visibility!=='private'||isCEO())&&(p.type==='text'||p.type==='short'||p.type==='video'||p.type==='game'));
+ if(!source.length){box.innerHTML='<div class="empty">No text, videos, Shorts or games yet.</div>';return}
+ const html=await Promise.all(source.map(async p=>{
+   let mediaSrc=p.media||'',thumbSrc=p.thumbnail||'';
+   if(p.mediaRef){const blob=await getMediaBlob(p.mediaRef);if(blob)mediaSrc=URL.createObjectURL(blob)}
+   if(p.thumbnailRef){const blob=await getMediaBlob(p.thumbnailRef);if(blob)thumbSrc=URL.createObjectURL(blob)}
+   const likes=p.likes||0,comments=(p.comments||[]).length;
+   let media='';
+   if(p.type==='game'){media=`<div class="homeFlowMediaPlaceholder" onclick="runHomeGame('${esc(p.id)}')"><div><span>🎮</span>Tap to play game break</div></div>`}
+   else if(p.type==='video'||p.type==='short'){const poster=thumbSrc?` poster="${esc(thumbSrc)}"`:'';media=`<div class="homeMediaTap" onclick="openHomeViewer('${esc(p.id)}')"><video class="flowVideo" src="${esc(mediaSrc)}"${poster} muted playsinline preload="metadata"></video><span class="homeTapHint">▶ Tap to watch</span></div>`}
+   return `<article class="homeFlowCard"><div class="postTop"><div class="author"><div class="mini">${esc((p.author||'BA').slice(0,1))}</div>${esc(p.author||'BA')}</div><span class="muted">${esc(p.type)}</span></div>${media}<div class="homeFlowBody">${p.type==='text'?`<div class="homeFlowText">${esc(p.text||'')}</div>`:`<h3>${esc(p.title||'Untitled')}</h3><p>${esc(p.text||'')}</p>`}<div class="homeFlowActions"><button class="homeFlowAction" onclick="likeHomePost('${esc(p.id)}',this)">♥ <span class="actionCount">${likes}</span></button><button class="homeFlowAction" onclick="openComments('${esc(p.id)}')">💬 <span class="actionCount">${comments}</span></button><button class="homeFlowAction" onclick="shareScrollPost('${esc(p.id)}')">↗ Share</button></div></div></article>`
+ })).catch(e=>[]);
+ box.innerHTML=html.length?html.join(''):'<div class="empty">Could not load the Home feed.</div>';
+}
+function runHomeGame(id){const p=allPosts().find(x=>x.id===id);if(!p)return;document.getElementById('featureRunner').style.display='flex';document.getElementById('featureRunnerFrame').srcdoc=p.code||'<h2 style="font-family:system-ui;padding:20px">Game not available.</h2>'}
+async function renderFeed(){
+  const box=document.getElementById("feed");
+  const source=allPosts().filter(p=>(p.showInScroll!==false)&&(p.visibility!=="private"||isCEO())&&(p.type==="short"||p.type==="image"));
+  if(!source.length){box.innerHTML='<div class="scrollEmpty"><div><h2>📜 BMC Scroll</h2><p style="margin:8px 0 16px">Publish a Short or Image to start the endless vertical feed.</p><button class="action" onclick="openCreate()">＋ Create first post</button></div></div>';return}
+  const posts=[];for(let cycle=0;cycle<5;cycle++)posts.push(...source);
+  const html=await Promise.all(posts.map(async(p,idx)=>{
+    let mediaSrc=p.media||"",thumbSrc=p.thumbnail||"";
+    if(p.mediaRef){const blob=await getMediaBlob(p.mediaRef);if(blob)mediaSrc=URL.createObjectURL(blob)}
+    if(p.thumbnailRef){const blob=await getMediaBlob(p.thumbnailRef);if(blob)thumbSrc=URL.createObjectURL(blob)}
+    const media=p.type==="short"?`<video id="scroll-video-${safeId(p.id)}-${idx}" class="scrollMedia" playsinline muted loop ${thumbSrc?`poster="${esc(thumbSrc)}"`:""} src="${esc(mediaSrc)}"></video>`:`<img class="scrollMedia" src="${esc(thumbSrc||mediaSrc)}" alt="${esc(p.title||"BMC image")}">`;
+    const mine=getMyLikes(), used=Number(mine[p.id]||0), liked=used>0;
+    const saved=getMySaves().includes(p.id);
+    const comments=(p.comments||[]).slice(-3);
+    return `<article class="scrollSlide" data-post-id="${esc(p.id)}" data-cycle-index="${idx}" onclick="handleScrollTap('${esc(p.id)}',event)">${media}<div class="scrollTitleCaption"><div class="scrollAuthor">${esc(p.author||"BMC Creator")}${p.featured?' · ⭐ Featured':''}</div><h3>${esc(p.title||"Untitled")}</h3><p>${esc(p.text||"")}</p></div><div class="scrollRightControls"><button data-like-post="${safeId(p.id)}" class="scrollControl likeBtn ${liked?'liked':''}" aria-label="Like / undo all likes" onclick="event.stopPropagation();likeScrollPost('${esc(p.id)}',this)"><svg viewBox="0 0 24 24"><path d="M20.8 8.7c0 5.2-8.8 10-8.8 10s-8.8-4.8-8.8-10A4.7 4.7 0 0 1 8 4c1.4 0 2.8.7 4 2.1C13.2 4.7 14.6 4 16 4a4.7 4.7 0 0 1 4.8 4.7Z" fill="currentColor" stroke="currentColor" stroke-width="1.5"/></svg></button><span class="scrollLikeCount" id="scroll-likes-${safeId(p.id)}-${idx}">${p.likes||0}</span><button class="scrollControl" aria-label="Comments" onclick="event.stopPropagation();openScrollComments('${esc(p.id)}')"><svg viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 9.5 9.5 0 0 1-4.2-1L4 20l1.1-3.2A7.2 7.2 0 0 1 4 11.5 7.5 7.5 0 0 1 12 4a7.5 7.5 0 0 1 8 7.5Z"/><path d="M8 12h.01M12 12h.01M16 12h.01" stroke-width="2.5"/></svg></button><span class="scrollLikeCount" id="scroll-comments-${safeId(p.id)}-${idx}">${(p.comments||[]).length}</span><button class="scrollControl saveBtn ${saved?'saved':''}" aria-label="Save" onclick="event.stopPropagation();toggleSaveScroll('${esc(p.id)}',this)"><svg viewBox="0 0 24 24"><path d="M6 4.5A2.5 2.5 0 0 1 8.5 2h7A2.5 2.5 0 0 1 18 4.5V21l-6-3.7L6 21V4.5Z"/></svg></button><span class="scrollActionLabel">Save</span><button class="scrollControl" aria-label="Share" onclick="event.stopPropagation();shareScrollPost('${esc(p.id)}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.2"/><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="19" r="2.2"/><path d="m8 11 7.8-4.4M8 13l7.8 4.4"/></svg></button><span class="scrollActionLabel">Share</span>${p.type==='short'?`<button class="scrollControl" aria-label="Play" onclick="event.stopPropagation();toggleScrollPlayback('${esc(p.id)}',this)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5Z" fill="currentColor" stroke="none"/></svg></button><span class="scrollActionLabel">Play</span><button class="scrollControl" aria-label="Sound" onclick="event.stopPropagation();toggleScrollSound('${esc(p.id)}',this)"><svg viewBox="0 0 24 24"><path d="M5 10v4h4l5 4V6l-5 4H5Z"/><path d="M17 9.5a4 4 0 0 1 0 5M19 7a7 7 0 0 1 0 10"/></svg></button><span class="scrollActionLabel">Sound</span>`:''}</div></article>`;
+  }));
+  box.innerHTML=`<div class="scrollTopBar"><button class="scrollBack" onclick="go('home')">‹ BMC</button><div class="scrollBrand">📜 BMC Scroll</div></div>`+html.join("");
+  const slides=[...box.querySelectorAll('.scrollSlide')],cycleHeight=slides[0]?.offsetHeight*source.length||1;
+  if(window.IntersectionObserver){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{const v=e.target.querySelector('video');if(!v)return;if(e.isIntersecting&&e.intersectionRatio>.65){v.play().catch(()=>{});e.target.querySelector('[aria-label="Play or pause"]')?.replaceChildren(document.createTextNode('Ⅱ'))}else v.pause()}),{root:box,threshold:[.65]});slides.forEach(x=>observer.observe(x));}
+  box.onscroll=()=>{if(box.scrollTop>cycleHeight*3.5)box.scrollTop-=cycleHeight*2;if(box.scrollTop<cycleHeight*.25&&box.scrollTop>0)box.scrollTop+=cycleHeight*2};
+  requestAnimationFrame(()=>{if(source.length)box.scrollTop=cycleHeight*2});
+}
+function getMyLikes(){return get('bmc_my_post_likes',{})}
+function saveMyLikes(x){return set('bmc_my_post_likes',x)}
+function getMySaves(){return get('bmc_my_post_saves',[])}
+function saveMySaves(x){return set('bmc_my_post_saves',x)}
+let scrollTapState={};
+function addUserLike(id,amount=1){const posts=allPosts(),p=posts.find(x=>x.id===id);if(!p)return false;const mine=getMyLikes(),used=Number(mine[id]||0);const add=Math.min(amount,3-used);if(add<=0)return false;mine[id]=used+add;p.likes=(p.likes||0)+add;saveMyLikes(mine);savePosts(posts);document.querySelectorAll(`[id^="scroll-likes-${safeId(id)}-"]`).forEach(x=>x.textContent=p.likes);return true}
+function undoAllMyLikes(id){const posts=allPosts(),p=posts.find(x=>x.id===id);if(!p)return;const mine=getMyLikes(),used=Number(mine[id]||0);if(used<=0)return toast('You have no likes to undo.');p.likes=Math.max(0,(p.likes||0)-used);delete mine[id];saveMyLikes(mine);savePosts(posts);document.querySelectorAll(`[id^="scroll-likes-${safeId(id)}-"]`).forEach(x=>x.textContent=p.likes);document.querySelectorAll(`[data-like-post="${safeId(id)}"]`).forEach(x=>x.classList.remove('liked'));scrollTapState[id]={lastTap:0,progress:0};toast('Your likes were undone.')}
+function likeScrollPost(id,button){const used=Number(getMyLikes()[id]||0);if(used>0)return undoAllMyLikes(id);if(addUserLike(id,1)){button.classList.add('liked');button.animate([{transform:'scale(1)'},{transform:'scale(1.3)'},{transform:'scale(1.05)'}],{duration:240})}}
+function handleScrollTap(id,event){if(event&&event.target?.closest('.scrollRightControls,.scrollTopBar'))return;const now=Date.now(),st=scrollTapState[id]||{lastTap:0,progress:0};if(now-st.lastTap<420){st.lastTap=0;st.progress=0;scrollTapState[id]=st;if(Number(getMyLikes()[id]||0)<3){if(addUserLike(id,1)){document.querySelectorAll(`[data-like-post="${safeId(id)}"]`).forEach(x=>x.classList.add('liked'));toast('❤️ +1 like')}}else toast('Maximum 3 likes for this post.');return}st.lastTap=now;st.progress=(st.progress||0)+1;if(st.progress>=10){st.progress=0;if(Number(getMyLikes()[id]||0)<3){if(addUserLike(id,1)){document.querySelectorAll(`[data-like-post="${safeId(id)}"]`).forEach(x=>x.classList.add('liked'));toast('❤️ +1 like')}}else toast('Maximum 3 likes for this post.')}scrollTapState[id]=st}
+function toggleScrollPlayback(id,button){const slide=button.closest('.scrollSlide'),v=slide?.querySelector('video');if(!v)return;if(v.paused){v.play().catch(()=>{});button.innerHTML='<svg viewBox="0 0 24 24"><path d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor" stroke="none"/></svg>';button.setAttribute('aria-label','Pause')}else{v.pause();button.innerHTML='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5Z" fill="currentColor" stroke="none"/></svg>';button.setAttribute('aria-label','Play')}}
+function toggleScrollSound(id,button){const slide=button.closest('.scrollSlide'),v=slide?.querySelector('video');if(!v)return;v.muted=!v.muted;button.innerHTML=v.muted?'<svg viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="m18 9 4 6m0-6-4 6"/></svg>':'<svg viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9.5a4 4 0 0 1 0 5M19.5 7a7 7 0 0 1 0 10"/></svg>';button.setAttribute('aria-label',v.muted?'Sound on':'Mute')}
+function toggleSaveScroll(id,button){let saves=getMySaves();if(saves.includes(id)){saves=saves.filter(x=>x!==id);button.classList.remove('saved');toast('Removed from Saved.')}else{saves.push(id);button.classList.add('saved');toast('Saved to your BMC collection.')}saveMySaves(saves)}
+function shareScrollPost(id){const p=allPosts().find(x=>x.id===id);if(!p)return;const text=(p.title||'BMC Scroll')+' — '+(p.text||'');if(navigator.share){navigator.share({title:p.title||'BMC Scroll',text,url:APP_URL}).catch(()=>{})}else if(navigator.clipboard){navigator.clipboard.writeText((text+'\n'+APP_URL).trim()).then(()=>toast('🔗 BMC Scroll link copied.')).catch(()=>toast('Share is not available here.'))}else toast('Share is not available here.')}
+function openScrollComments(id){openComments(id)}
+function openComments(id){const p=allPosts().find(x=>x.id===id);if(!p)return;window._commentPostId=id;const modal=document.getElementById('igComments');const list=document.getElementById('igCommentsList');document.getElementById('igCommentsPost').textContent=(p.title||'BMC post')+' · '+(p.comments||[]).length+' comments';const comments=p.comments||[];list.innerHTML=comments.length?comments.map(c=>`<div class="igComment"><div class="igCommentAvatar">${esc((c.name||'BA').slice(0,1).toUpperCase())}</div><div class="igCommentText"><b>${esc(c.name||'BA')}</b>${esc(c.text)}<span class="igCommentTime">Just now</span></div></div>`).join(''):'<div class="igCommentEmpty">No comments yet.<br>Be the first to comment.</div>';modal.classList.add('show');setTimeout(()=>document.getElementById('igCommentInput')?.focus(),120)}
+function closeComments(){document.getElementById('igComments')?.classList.remove('show');window._commentPostId=null}
+function submitIGComment(){const input=document.getElementById('igCommentInput'),text=input?.value.trim(),id=window._commentPostId;if(!text||!id)return;const posts=allPosts(),p=posts.find(x=>x.id===id);if(!p)return;p.comments=p.comments||[];p.comments.push({name:'BA',text});savePosts(posts);input.value='';openComments(id);renderFeed();if(document.getElementById('home')?.classList.contains('active'))renderHomeFlow();toast('Comment added.') }
+function submitScrollComment(id){window._commentPostId=id;submitIGComment()}
+function openHomeViewer(id){const p=allPosts().find(x=>x.id===id);if(!p)return;window._homeViewerId=id;document.getElementById('homeViewerTitle').textContent=p.title||'BMC Post';document.getElementById('homeViewerText').textContent=p.text||'';const media=document.getElementById('homeViewerMedia');let src=p.media||'';if(p.mediaRef){getMediaBlob(p.mediaRef).then(blob=>{if(blob){const u=URL.createObjectURL(blob);media.innerHTML=p.type==='video'||p.type==='short'?`<video src="${esc(u)}" controls playsinline></video>`:`<img src="${esc(u)}" alt="">`}})}else{media.innerHTML=p.type==='video'||p.type==='short'?`<video src="${esc(src)}" controls playsinline></video>`:`<img src="${esc(p.thumbnail||src)}" alt="">`};document.getElementById('homeViewer').classList.add('show');document.getElementById('homeViewerLike').textContent='♥ '+(p.likes||0);document.getElementById('homeViewerLike').onclick=()=>likeHomePost(id,document.getElementById('homeViewerLike'))}
+function closeHomeViewer(){document.getElementById('homeViewer').classList.remove('show');document.getElementById('homeViewerMedia').innerHTML='';window._homeViewerId=null}
+function likeHomePost(id,button){const used=Number(getMyLikes()[id]||0);if(used>0){undoAllMyLikes(id);renderHomeFlow();return}if(addUserLike(id,1)){button.innerHTML='♥ <span class="actionCount">'+(allPosts().find(x=>x.id===id)?.likes||0)+'</span>'}}
+
+function addHomeComment(id){const input=document.getElementById('home-comment-'+safeId(id));if(!input||!input.value.trim())return;const posts=allPosts(),p=posts.find(x=>x.id===id);if(!p)return;p.comments=p.comments||[];p.comments.push({name:'BA',text:input.value.trim()});savePosts(posts);renderHomeFlow();toast('Comment added.')}
+function focusHomeComment(id){openComments(id)}
+function countView(id){const posts=allPosts(),p=posts.find(x=>x.id===id);if(!p)return;p.views=(p.views||0)+1;savePosts(posts);}
+function likePost(id){const p=allPosts(),x=p.find(a=>a.id===id);if(!x)return;x.likes=(x.likes||0)+1;savePosts(p);renderFeed()}
+function addComment(id){const input=document.getElementById("comment-"+safeId(id));if(!input||!input.value.trim())return;const p=allPosts(),x=p.find(a=>a.id===id);if(!x)return;x.comments=x.comments||[];x.comments.push({name:"BA",text:input.value.trim()});savePosts(p);renderFeed()}
+function focusComment(id){const x=document.getElementById("comment-"+safeId(id));if(x){x.focus();x.scrollIntoView({behavior:"smooth",block:"center"})}}
+function doSearch(){const q=document.getElementById("searchInput").value.trim().toLowerCase(),r=document.getElementById("results");if(!q){r.innerHTML="";return}const hits=allPosts().filter(p=>(p.title+" "+p.text+" "+p.author+" "+p.type).toLowerCase().includes(q));r.innerHTML=hits.length?hits.map(p=>`<div class="post" style="padding:18px;margin-bottom:10px"><b>${esc(p.title)}</b><p class="muted">${esc(p.author)} · ${esc(p.type)}</p><p style="margin-top:6px">${esc(p.text)}</p></div>`).join(""):'<div class="empty">No results.</div>'}
+function saveNote(){const x=document.getElementById("noteText"),t=x.value.trim();if(!t){toast("Write something first.");return}const n=get(STORE.notes,[]);n.unshift({text:t,date:new Date().toLocaleString()});set(STORE.notes,n);x.value="";renderStudy();toast("Note saved.")}
+function saveStudyFile(){const f=document.getElementById("studyFile").files[0];if(!f)return toast("Choose a document.");const d=get(STORE.docs,[]);d.unshift({name:f.name,size:f.size,date:new Date().toLocaleString()});if(set(STORE.docs,d)){document.getElementById("studyFile").value="";renderStudy();toast("Document added to local library.")}}
+function renderStudy(){const n=get(STORE.notes,[]),d=get(STORE.docs,[]);document.getElementById("studyList").innerHTML=(d.length?d.map(x=>`<div style="padding:8px 0;border-bottom:1px solid var(--line)">📄 ${esc(x.name)} <small class="muted">(${Math.round(x.size/1024)} KB)</small></div>`).join(""):"<p class='muted'>No documents yet.</p>")+(n.length?`<div style="margin-top:12px"><b>Saved notes</b>${n.slice(0,8).map(x=>`<div style="padding:8px 0;border-bottom:1px solid var(--line)">${esc(x.text)}</div>`).join("")}</div>`:"")}
+/* Study AI */
+const STUDY_AI_HISTORY_STORE="bmc_study_ai_history";
+let studyImported={file:null,data:null};
+function getStudyHistory(){return get(STUDY_AI_HISTORY_STORE,[])}
+function saveStudyHistory(h){return set(STUDY_AI_HISTORY_STORE,h.slice(-80))}
+function studyInstruction(){return `You are BMC Study AI, a dedicated school study assistant. Focus on mathematics, physics, chemistry and general school subjects. For maths and physics, use correct formulas, define symbols and units, and solve step by step without skipping reasoning. For chemistry, explain equations, balancing, quantities, units and concepts clearly. If the user gives an exercise, guide them through it and point out mistakes. Never invent a formula or pretend to see an unreadable import. Adapt to the student's level and answer in the user's language when practical.`}
+function studyTab(kind,b){document.querySelectorAll('.studyTab').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');document.getElementById('studyAiPane').style.display=kind==='chat'?'block':'none';document.getElementById('studyHistoryPane').style.display=kind==='history'?'block':'none';document.getElementById('studyImportPane').style.display=kind==='import'?'block':'none';if(kind==='history')renderStudyHistory();if(kind==='chat')renderCurrentStudyChat();}
+function renderCurrentStudyChat(){const box=document.getElementById('studyMessages'),h=getStudyHistory();if(!h.length){box.innerHTML='<div class="bubble ai">👋 Hi! I’m Study AI. Give me a lesson, formula, exercise or question.</div>';return}const c=h[h.length-1];box.innerHTML=c.messages.map(m=>`<div class="bubble ${m.role==='user'?'user':'ai'}">${esc(m.text)}</div>`).join('');box.scrollTop=box.scrollHeight}
+function renderStudyHistory(){const box=document.getElementById('studyHistoryList'),h=getStudyHistory();if(!h.length){box.innerHTML='<div class="bubble ai">↶ No Study AI conversations yet.</div>';return}box.innerHTML=h.slice().reverse().map((x,i)=>`<div class="historyItem" onclick="openStudyHistory(${h.length-1-i})"><b>${esc(x.title||'Study AI Chat')}</b><div class="historyMeta">${esc(x.date||'')} · ${x.messages.length} messages</div></div>`).join('')}
+function openStudyHistory(index){const h=getStudyHistory(),c=h[index];if(!c)return;document.getElementById('studyMessages').innerHTML=c.messages.map(m=>`<div class="bubble ${m.role==='user'?'user':'ai'}">${esc(m.text)}</div>`).join('');document.getElementById('studyMessages').scrollTop=document.getElementById('studyMessages').scrollHeight;studyTab('chat')}
+function studyNewConversation(){const h=getStudyHistory();if(h.length&&h[h.length-1].messages.length)h[h.length-1].closed=true;saveStudyHistory(h);document.getElementById('studyMessages').innerHTML='<div class="bubble ai">✨ New Study AI conversation. What are we studying?</div>';document.getElementById('studyInput').value='';studyTab('chat');document.getElementById('studyInput').focus();toast('New Study AI conversation started.')}
+function addStudyHistoryMessage(userText,aiText){const h=getStudyHistory();let c=h[h.length-1];if(!c||c.closed){c={title:userText.slice(0,42)||'Study AI Chat',date:new Date().toLocaleString(),messages:[],closed:false};h.push(c)}c.messages.push({role:'user',text:userText},{role:'model',text:aiText});c.date=new Date().toLocaleString();saveStudyHistory(h)}
+function studyQuick(text){document.getElementById('studyInput').value=text;document.getElementById('studyInput').focus()}
+async function sendStudyAI(){const i=document.getElementById('studyInput'),t=i.value.trim();if(!t)return;const box=document.getElementById('studyMessages'),key=getAIKey();box.innerHTML+=`<div class="bubble user">${esc(t)}</div>`;i.value='';box.scrollTop=box.scrollHeight;if(!key){box.innerHTML+='<div class="bubble ai">🔑 Connect your Gemini API key in Studio → AI Connection first.</div>';return}const h=getStudyHistory(),c=h[h.length-1],history=c&&!c.closed?c.messages.slice(-20).map(m=>({role:m.role,parts:[{text:m.text}]})):[];try{const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({systemInstruction:{parts:[{text:studyInstruction()}]},contents:[...history,{role:'user',parts:[{text:t}]}]})});const data=await res.json();if(!res.ok)throw new Error(data?.error?.message||`HTTP ${res.status}`);const a=data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'I could not generate a study answer.';addStudyHistoryMessage(t,a);box.innerHTML+=`<div class="bubble ai">${esc(a)}</div>`;box.scrollTop=box.scrollHeight}catch(e){box.innerHTML+=`<div class="bubble ai">⚠️ Study AI error: ${esc(e.message)}</div>`}}
+function handleStudyImport(input){const f=input.files[0];if(!f)return;studyImported={file:f,data:null};const status=document.getElementById('studyImportStatus');status.textContent='⏳ Loading '+f.name+'…';if(f.type.startsWith('image/')){const r=new FileReader();r.onload=()=>{studyImported.data=r.result;document.getElementById('studyImportPreview').src=r.result;document.getElementById('studyImportPreview').style.display='block';status.textContent='✅ Image imported: '+f.name};r.readAsDataURL(f)}else{status.textContent='✅ File selected: '+f.name}}
+async function askStudyImport(){if(!studyImported.file)return toast('Choose a file first.');const key=getAIKey();if(!key)return toast('Connect Gemini first in Studio → AI Connection.');const prompt=document.getElementById('studyImportPrompt').value.trim()||'Analyze this study material and explain the important points and formulas step by step.';const parts=[{text:prompt}];if(studyImported.file.type.startsWith('text/')||/\.(txt|md|csv|json)$/i.test(studyImported.file.name)){parts.unshift({text:'Imported study material:\n'+await studyImported.file.text()})}else if(studyImported.data){parts.unshift({inlineData:{mimeType:studyImported.file.type,data:studyImported.data.split(',')[1]}})}else{return toast('For this file type, select a supported image or text file for browser import.')}try{const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({systemInstruction:{parts:[{text:studyInstruction()}]},contents:[{role:'user',parts}]})});const data=await res.json();if(!res.ok)throw new Error(data?.error?.message||`HTTP ${res.status}`);const a=data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'No response.';document.getElementById('studyImportStatus').textContent='✅ Study AI analyzed the import.';addStudyHistoryMessage(prompt,a);document.getElementById('studyMessages').innerHTML=`<div class="bubble user">${esc(prompt)}</div><div class="bubble ai">${esc(a)}</div>`;studyTab('chat');toast('Study AI finished the import analysis.')}catch(e){document.getElementById('studyImportStatus').textContent='❌ Import error: '+e.message}}
+/* AI */
+const AI_KEY_STORE="bmc_user_gemini_key";
+const AI_HISTORY_STORE="bmc_ai_history";
+const GEMINI_MODEL="gemini-3.8-flash";
+const GEMINI_MAX_OUTPUT_TOKENS=65536;
+function getAIKey(){return get(AI_KEY_STORE,"")}
+function setAIKey(k){return set(AI_KEY_STORE,k)}
+function getAIHistory(){return get(AI_HISTORY_STORE,[])}
+function saveAIHistory(h){return set(AI_HISTORY_STORE,h.slice(-80))}
+function aiSystemInstruction(){const t=getAITraining();return [t.persona,t.rules,t.language,t.extra].filter(Boolean).join("\n\n")||"You are BMC AI, the helpful AI assistant inside BMC Scroll. Be clear, honest, accurate and complete. Give the level of detail needed to fully answer the user. Do not omit useful context merely to make the answer shorter."}
+function aiTab(kind,b){document.querySelectorAll(".subTab").forEach(x=>x.classList.remove("active"));if(b)b.classList.add("active");document.querySelectorAll(".aiPane").forEach(x=>x.classList.remove("active"));const pane=document.getElementById("aiPane"+(kind==="chat"?"Chat":kind==="game"?"Game":"Content"));if(pane)pane.classList.add("active");if(kind==="chat")aiToolTab("history",document.querySelector(".aiTool"))}
+function aiToolTab(kind,b){document.querySelectorAll(".aiTool").forEach(x=>x.classList.remove("active"));if(b)b.classList.add("active");const box=document.getElementById("aiMessages"),imp=document.getElementById("aiImportPanel"),img=document.getElementById("aiImagePanel");if(imp)imp.style.display=kind==="import"?"block":"none";if(img)img.style.display=kind==="image"?"block":"none";if(kind==="history"){box.style.display="flex";renderAIHistory();return}if(kind==="study"){box.style.display="flex";box.innerHTML='<div class="bubble ai">📚 Study mode: tell me the subject, lesson or exercise and I will explain it step by step.</div>'}else if(kind==="ideas"){box.style.display="flex";box.innerHTML='<div class="bubble ai">💡 Ideas mode: ask for video ideas, titles, hooks, captions or BMC Scroll concepts.</div>'}else if(kind==="chatTools"){box.style.display="flex";renderCurrentAIChat()}else if(kind==="import"||kind==="image"){box.style.display="none"}}
+function renderCurrentAIChat(){const box=document.getElementById("aiMessages"),h=getAIHistory();if(!h.length){box.innerHTML='<div class="bubble ai">Hello! 👋 I am BMC AI. Ready to assist.</div>';return}const last=h[h.length-1];box.innerHTML=last.messages.map(m=>`<div class="bubble ${m.role==="user"?"user":"ai"}">${esc(m.text)}</div>`).join("");box.scrollTop=box.scrollHeight}
+function renderAIHistory(){const box=document.getElementById("aiMessages"),h=getAIHistory();if(!h.length){box.innerHTML='<div class="bubble ai">↶ No saved BMC AI chats yet. Start a chat and it will appear here.</div>';return}box.innerHTML='<div class="historyList">'+h.slice().reverse().map((x,i)=>`<div class="historyItem" onclick="openAIHistory(${h.length-1-i})"><b>${esc(x.title||"BMC AI Chat")}</b><div class="historyMeta">${esc(x.date||"")} · ${x.messages.length} messages</div></div>`).join("")+"</div>"}
+function openAIHistory(index){const h=getAIHistory(),chat=h[index];if(!chat)return;document.getElementById("aiMessages").innerHTML=chat.messages.map(m=>`<div class="bubble ${m.role==="user"?"user":"ai"}">${esc(m.text)}</div>`).join("");document.getElementById("aiMessages").scrollTop=document.getElementById("aiMessages").scrollHeight}
+function newAIConversation(){const h=getAIHistory();if(h.length&&h[h.length-1].messages.length)h[h.length-1].closed=true;saveAIHistory(h);const box=document.getElementById("aiMessages");box.style.display="flex";box.innerHTML='<div class="bubble ai">✨ New BMC AI conversation. What would you like to talk about?</div>';const input=document.getElementById("aiInput");if(input){input.value="";input.focus()}toast("New BMC AI conversation started.")}
+function addAIHistoryMessage(userText,aiText){const h=getAIHistory();let chat=h[h.length-1];if(!chat||chat.closed){chat={title:userText.slice(0,42)||"BMC AI Chat",date:new Date().toLocaleString(),messages:[],closed:false};h.push(chat)}chat.messages.push({role:"user",text:userText},{role:"model",text:aiText});chat.date=new Date().toLocaleString();saveAIHistory(h)}
+function initVoices(){const selects=[document.getElementById("aiVoiceChoice"),document.getElementById("studyVoiceChoice")].filter(Boolean);const fill=()=>{const voices=speechSynthesis.getVoices();selects.forEach(sel=>{const current=sel.value;sel.innerHTML='<option value="">Voice: System default</option>'+voices.map((v,i)=>`<option value="${i}">${esc(v.name)} · ${esc(v.lang)}</option>`).join("");sel.value=current});};fill();if("onvoiceschanged" in speechSynthesis)speechSynthesis.onvoiceschanged=fill}
+function speakText(text,selectId){if(!text||!("speechSynthesis" in window))return toast("Voice playback is not supported on this browser.");speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);const sel=document.getElementById(selectId),voices=speechSynthesis.getVoices();if(sel&&sel.value!==""&&voices[Number(sel.value)])u.voice=voices[Number(sel.value)];speechSynthesis.speak(u)}
+function speakLastAI(){const h=getAIHistory();const c=h[h.length-1];const last=c&&c.messages.slice().reverse().find(m=>m.role==="model");if(last)speakText(last.text,"aiVoiceChoice");else toast("No AI answer to read yet.")}
+function startAIVoice(){startVoiceInto("aiInput")}
+function startStudyVoice(){startVoiceInto("studyInput")}
+function startVoiceInto(inputId){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return toast("Voice input is not supported on this browser.");const r=new SR();r.lang=navigator.language||"en-US";r.interimResults=false;r.maxAlternatives=1;r.onstart=()=>toast("🎙 Listening…");r.onresult=e=>{document.getElementById(inputId).value=e.results[0][0].transcript};r.onerror=()=>toast("Voice input could not be started.");r.start()}
+async function sendAI(){
+  const i=document.getElementById("aiInput"),t=i.value.trim();
+  if(!t)return;
+  const box=document.getElementById("aiMessages"),key=getAIKey();
+  if(window._bmcAISending){toast("BMC AI is already processing your previous message.");return;}
+  box.innerHTML+=`<div class="bubble user">${esc(t)}</div>`;
+  i.value="";
+  box.scrollTop=box.scrollHeight;
+  if(!key){const a="🔑 BMC AI needs an API key. Open Studio → 🔑 AI Connection, add your own Gemini API key and verify it first.";box.innerHTML+=`<div class="bubble ai">${esc(a)}</div>`;return}
+  const h=getAIHistory(),chat=h[h.length-1];
+  /* Preserve the complete active conversation; closed conversations are intentionally not sent. */
+  const history=chat&&!chat.closed?chat.messages.map(m=>({role:m.role,parts:[{text:m.text}]})):[];
+  const contents=[...history,{role:"user",parts:[{text:t}]}];
+  window._bmcAISending=true;
+  try{
+    const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","x-goog-api-key":key},
+      body:JSON.stringify({
+        systemInstruction:{parts:[{text:aiSystemInstruction()}]},
+        contents,
+        generationConfig:{maxOutputTokens:GEMINI_MAX_OUTPUT_TOKENS}
+      })
+    });
+    let data=null;
+    try{data=await res.json()}catch(_){data=null}
+    const quotaError=res.status===429||data?.error?.code===429||data?.error?.status==="RESOURCE_EXHAUSTED"||/quota_exceeded|quota exceeded|resource exhausted/i.test(data?.error?.message||"");
+    if(quotaError){
+      const a="⚠️ BMC AI quota is currently exhausted. This is separate from response length: maxOutputTokens only sets the maximum response size; it does not increase Gemini request quota. No automatic retry was made. Check your Gemini API quota/billing or use the same connected key again after its quota becomes available.";
+      box.innerHTML+=`<div class="bubble ai">${esc(a)}</div>`;
+      return;
+    }
+    if(!res.ok)throw new Error(data?.error?.message||`HTTP ${res.status}`);
+    const a=data?.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("")||"I couldn't generate a response.";
+    addAIHistoryMessage(t,a);
+    box.innerHTML+=`<div class="bubble ai">${esc(a)}</div>`;
+    box.scrollTop=box.scrollHeight;
+  }catch(e){
+    const a="⚠️ BMC AI connection error: "+(e?.message||"Unknown error");
+    box.innerHTML+=`<div class="bubble ai">${esc(a)}</div>`;
+    box.scrollTop=box.scrollHeight;
+  }finally{window._bmcAISending=false;}
+}
+async function verifyAndConnectAI(){const input=document.getElementById("userGeminiKey"),key=input.value.trim();if(!key)return setAIConnectionStatus("bad","❌ Paste a Gemini API key first.");setAIConnectionStatus("","⏳ Verifying key…");try{const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body:JSON.stringify({contents:[{parts:[{text:"Reply with exactly: BMC AI connection verified."}]}]})});const data=await res.json();if(!res.ok)throw new Error(data?.error?.message||`HTTP ${res.status}`);if(!data?.candidates?.[0]?.content?.parts?.[0]?.text)throw new Error("No model response");setAIKey(key);setAIConnectionStatus("ok","🟢 Connected — BMC AI is ready on this device.");toast("BMC AI connected successfully.")}catch(e){setAIConnectionStatus("bad","❌ Key verification failed: "+e.message)}}
+function setAIConnectionStatus(kind,text){const x=document.getElementById("aiConnectStatus");if(!x)return;x.className="aiConnectStatus"+(kind?" "+kind:"");x.textContent=text}
+function loadAIConnectionUI(){const input=document.getElementById("userGeminiKey"),key=getAIKey();if(input)input.value=key;const ceoNote=document.getElementById("aiConnectCeoNote");if(ceoNote)ceoNote.style.display=isCEO()?"block":"none";if(key)setAIConnectionStatus("ok","🟢 Connected — BMC AI is ready on this device.");else setAIConnectionStatus("","⚪ Not connected — connect a Gemini key to use live AI.")}
+function disconnectAI(){localStorage.removeItem(AI_KEY_STORE);const input=document.getElementById("userGeminiKey");if(input)input.value="";setAIConnectionStatus("","⚪ Disconnected");toast("BMC AI disconnected on this device.")}
+function createGameFromPrompt(){const prompt=document.getElementById("gamePrompt").value.trim()||"tap game";const code=`<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:system-ui;text-align:center;padding:30px;background:#f5f7fb;color:#101a35}button{border:0;border-radius:18px;padding:18px 28px;background:#f5c43b;font-weight:900;font-size:20px}</style></head><body><h1>🎮 BMC Mini Game</h1><p>${esc(prompt)}</p><button onclick="score++;out.textContent='Score: '+score">TAP!</button><h2 id="out">Score: 0</h2><script>let score=0<\/script></body></html>`;document.getElementById("aiGamePreview").srcdoc=code}
+function generateContentIdeas(){const t=document.getElementById("contentTopic").value.trim()||"BMC Scroll";const ideas=[`🎬 Video: 3 things nobody knows about ${t}`,`📱 Short: A 15-second hook about ${t}`,`🖼️ Image: ${t} explained visually`, `🔥 Challenge: ask viewers a question about ${t}`,`🎙️ Story: how ${t} started or changed`];document.getElementById("contentOutput").innerHTML=`<div class="panel"><b>Ideas for ${esc(t)}</b>${ideas.map(x=>`<div style="padding:10px 0;border-bottom:1px solid var(--line)">${esc(x)}</div>`).join("")}</div>`}
+/* Studio */
+function studioTab(kind,b){document.querySelectorAll("#studio .tabs .tab").forEach(x=>x.classList.remove("active"));if(b)b.classList.add("active");document.getElementById("studioDashboard").style.display=kind==="dashboard"?"block":"none";document.getElementById("studioContent").style.display=kind==="content"?"block":"none";document.getElementById("studioAiStudio").style.display=kind==="aiStudio"?"block":"none";document.getElementById("studioAiConnect").style.display=kind==="aiConnect"?"block":"none";if(kind==="content")renderStudioContent();if(kind==="aiConnect")loadAIConnectionUI()}
+function renderStudioContent(){
+ const box=document.getElementById("studioContentList");if(!box)return;const posts=allPosts();
+ if(!posts.length){box.innerHTML='<div class="contentEmpty"><h3>No content yet</h3><p style="margin-top:6px">Create your first post to see it here.</p></div>';return}
+ box.innerHTML=posts.map(p=>{
+   const media=p.thumbnail||p.media||'';let thumb=media?`<img src="${esc(media)}" alt="">`:'';if(!thumb&&p.type==='video')thumb='<span>▶</span>';if(!thumb&&p.type==='short')thumb='<span>▣</span>';if(!thumb&&p.type==='game')thumb='<span>🎮</span>';if(!thumb&&p.type==='study')thumb='<span>▤</span>';if(!thumb)thumb='<span>✦</span>';
+   const status=p.visibility==='private'?'🔒 Private':'🌍 Public';const pub=p.published!==false;
+   return `<article class="contentCard"><div class="contentThumb">${thumb}</div><div class="contentInfo"><h3>${esc(p.title||'Untitled')} ${p.featured?'<span class="contentBadge">⭐ Featured</span>':''}</h3><div class="contentMeta">${esc(p.type||'post')} · ${esc(p.category||'general')} · ${p.views||0} views · ${p.likes||0} likes · ${(p.comments||[]).length} comments<br><span>${status}</span> · ${pub?'Published':'Unpublished'}</div><div class="contentActions"><button class="contentAction publish" onclick="togglePublishPost('${esc(p.id)}',this)">${pub?'Unpublish':'Publish'}</button><button class="contentAction featured" onclick="toggleFeaturePost('${esc(p.id)}')"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg>${p.featured?'Unfeature':'Feature'}</button><button class="contentAction" onclick="editContentPost('${esc(p.id)}')"><svg viewBox="0 0 24 24"><path d="m4 20 4.2-1 10.9-10.9a2.3 2.3 0 0 0-3.2-3.2L5 15.8 4 20Z"/><path d="m14.5 6.5 3 3"/></svg>Edit</button><button class="contentAction delete" onclick="deleteContentPost('${esc(p.id)}')"><svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V4h6v3M8 10v7M12 10v7M16 10v7M6 7l1 14h10l1-14"/></svg>Delete</button></div></div></article>`;
+ }).join('');
+}
+function updateContentPost(id,fn){const posts=allPosts(),p=posts.find(x=>x.id===id);if(!p)return;fn(p);savePosts(posts);renderStudioContent();renderHomeFlow();renderFeed();renderStudio();}
+function togglePublishPost(id){updateContentPost(id,p=>{p.published=p.published===false?true:false;p.visibility=p.published===false?'private':(p.visibility||'public')});toast('Post visibility updated.')}
+function toggleFeaturePost(id){updateContentPost(id,p=>{p.featured=!p.featured});toast('Featured status updated.')}
+function deleteContentPost(id){const p=allPosts().find(x=>x.id===id);if(!p)return;if(!confirm('Delete this post from BMC Scroll?'))return;savePosts(allPosts().filter(x=>x.id!==id));renderStudioContent();renderHomeFlow();renderFeed();renderStudio();toast('Post deleted.')}
+function editContentPost(id){const p=allPosts().find(x=>x.id===id);if(!p)return;openCreate();setTimeout(()=>{document.getElementById('createTitle').value=p.title||'';document.getElementById('createCaption').value=p.text||'';document.getElementById('createTags').value=Array.isArray(p.tags)?p.tags.join(', '):(p.tags||'');const cat=document.getElementById('createCategory');if(cat&&p.category&&[...cat.options].some(o=>o.value===p.category))cat.value=p.category;const b=document.querySelector(`[data-create="${p.type}"]`);if(b)createType(p.type,b);window._editingPostId=id;toast('Editing post — choose Publish to save changes.')},80)}
+function renderStudio(){const posts=allPosts();document.getElementById("metricPosts").textContent=posts.length;document.getElementById("metricViews").textContent=posts.reduce((a,p)=>a+(p.views||0),0);document.getElementById("metricLikes").textContent=posts.reduce((a,p)=>a+(p.likes||0),0);document.getElementById("metricComments").textContent=posts.reduce((a,p)=>a+(p.comments||[]).length,0);document.getElementById("metricSaves").textContent=posts.reduce((a,p)=>a+(p.saves||0),0);const top=[...posts].sort((a,b)=>(b.views||0)-(a.views||0)).slice(0,6),max=Math.max(1,...top.map(p=>p.views||0));document.getElementById("topPosts").innerHTML=top.length?top.map(p=>`<div style="margin:12px 0"><div style="display:flex;justify-content:space-between;gap:8px"><span>${esc(p.title||"Untitled")}</span><span class="muted">${p.views||0}</span></div><div class="bar"><i style="width:${Math.max(4,((p.views||0)/max)*100)}%"></i></div></div>`).join(""):"<p class='muted'>No posts yet.</p>";renderCustomFeatures()}
+const MEDIA_DB_NAME="bmc_scroll_media_db",MEDIA_STORE="media";
+let mediaDBPromise=null;
+function openMediaDB(){if(mediaDBPromise)return mediaDBPromise;mediaDBPromise=new Promise((resolve,reject)=>{const r=indexedDB.open(MEDIA_DB_NAME,1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains(MEDIA_STORE))r.result.createObjectStore(MEDIA_STORE)};r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});return mediaDBPromise}
+function dataURLToBlob(data){const parts=data.split(","),mime=(parts[0].match(/:(.*?);/)||[])[1]||"application/octet-stream",bin=atob(parts[1]||"");const arr=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);return new Blob([arr],{type:mime})}
+async function putMedia(data){const db=await openMediaDB(),id="m_"+Date.now()+"_"+Math.random().toString(36).slice(2);return new Promise((resolve,reject)=>{const tx=db.transaction(MEDIA_STORE,"readwrite");tx.objectStore(MEDIA_STORE).put(dataURLToBlob(data),id);tx.oncomplete=()=>resolve(id);tx.onerror=()=>reject(tx.error)})}
+async function getMediaBlob(id){try{const db=await openMediaDB();return await new Promise((resolve,reject)=>{const r=db.transaction(MEDIA_STORE,"readonly").objectStore(MEDIA_STORE).get(id);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}catch(e){return null}}
+function openCreate(){document.getElementById("createModal").style.display="flex";resetCreateForm();createType("image",document.querySelector('.createType[data-create="image"]'))}
+function closeCreate(){document.getElementById("createModal").style.display="none"}
+let createState={visibility:"public",showInScroll:true,comments:true,featured:false,media:null,thumbnail:null,sound:null};
+function resetCreateForm(){["createTitle","createCaption","createTags","createCode"].forEach(id=>{const x=document.getElementById(id);if(x)x.value=""});["createFile","createThumbnail","createSound"].forEach(id=>{const x=document.getElementById(id);if(x)x.value=""});createState={visibility:"public",showInScroll:true,comments:true,featured:false,media:null,thumbnail:null,sound:null};setVisibility("public");syncCreateToggles();["createMediaStatus","createThumbnailStatus","createSoundStatus"].forEach(id=>{const x=document.getElementById(id);if(x)x.textContent=""})}
+function createType(kind,b){createKind=kind;document.querySelectorAll(".createType").forEach(x=>x.classList.remove("active"));if(b)b.classList.add("active");const file=document.getElementById("createFile");document.getElementById("createFileWrap").style.display="block";file.accept=kind==="image"?"image/*":kind==="video"||kind==="short"?"video/*":kind==="study"?".pdf,.txt,.md,.doc,.docx":"*/*";document.getElementById("createCodeWrap").style.display=kind==="game"?"block":"none";document.getElementById("createFileLabel").textContent=kind==="image"?"Image, video, PDF or document":kind==="video"||kind==="short"?"Video file":kind==="study"?"PDF or study document":"Game file or document"}
+function setVisibility(v){createState.visibility=v;document.getElementById("visPublic").classList.toggle("active",v==="public");document.getElementById("visPrivate").classList.toggle("active",v==="private")}
+function toggleCreateSetting(k,b){createState[k]=!createState[k];b.classList.toggle("on",createState[k])}
+function syncCreateToggles(){["toggleScroll","toggleComments","toggleFeatured"].forEach(id=>{const x=document.getElementById(id);if(!x)return;const k=id==="toggleScroll"?"showInScroll":id==="toggleComments"?"comments":"featured";x.classList.toggle("on",!!createState[k])})}
+function fileToDataURL(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+function handleCreateUpload(kind,input){const file=input.files&&input.files[0];if(!file)return;const status=document.getElementById(kind==="media"?"createMediaStatus":kind==="thumbnail"?"createThumbnailStatus":"createSoundStatus");status.textContent="⏳ Uploading "+file.name+"…";fileToDataURL(file).then(data=>{createState[kind]={name:file.name,size:file.size,type:file.type,data};status.textContent="✅ Upload successful: "+file.name;toast("Upload successful — no artificial file-size limit was applied.")}).catch(()=>{status.textContent="❌ Upload failed."})}
+function previewCreateCode(){const code=document.getElementById("createCode").value;document.getElementById("createCodePreview").srcdoc=code||"<p style='font-family:system-ui;padding:20px'>Paste code first.</p>"}
+function saveCreateDraft(){const draft={title:document.getElementById("createTitle").value,caption:document.getElementById("createCaption").value,category:document.getElementById("createCategory").value,tags:document.getElementById("createTags").value,type:createKind,visibility:createState.visibility,showInScroll:createState.showInScroll,comments:createState.comments,featured:createState.featured,date:new Date().toLocaleString()};const d=get("bmc_scroll_drafts",[]);d.unshift(draft);if(set("bmc_scroll_drafts",d)){toast("Draft saved.");closeCreate()}}
+async function aiFillCreate(field){
+  const key=getAIKey();
+  if(!key)return toast("Connect Gemini first in Studio → AI Connection.");
+  const title=document.getElementById("createTitle").value.trim();
+  const caption=document.getElementById("createCaption").value.trim();
+  const category=document.getElementById("createCategory").value;
+  const prompts={
+    title:`Write one strong BMC Scroll post title. Context: ${caption||title||"new BMC post"}. Return only the title.`,
+    caption:`Write a concise BMC Scroll caption for: ${title||"a new post"}. Category: ${category}. Return only the caption.`,
+    category:`Choose one category from: general, entertainment, education, technology, gaming, news, art, music, science, other. Context: ${title} ${caption}. Return only the category.`,
+    tags:`Give 6 concise comma-separated tags for this BMC Scroll post: ${title}. ${caption}. Return only comma-separated tags.`
+  };
+  try{
+    const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","x-goog-api-key":key},
+      body:JSON.stringify({
+        contents:[{parts:[{text:prompts[field]}]}],
+        systemInstruction:{parts:[{text:aiSystemInstruction()}]}
+      })
+    });
+    const data=await res.json();
+    if(!res.ok)throw new Error(data?.error?.message||`HTTP ${res.status}`);
+    const out=data?.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("").trim()||"";
+    if(field==="title")document.getElementById("createTitle").value=out;
+    if(field==="caption")document.getElementById("createCaption").value=out;
+    if(field==="category")document.getElementById("createCategory").value=out.toLowerCase().trim();
+    if(field==="tags")document.getElementById("createTags").value=out;
+    toast("✨ AI filled "+field+".");
+  }catch(e){toast("AI error: "+e.message)}
+}
+function publishCreate(){
+ if(window._editingPostId){const id=window._editingPostId;const posts=allPosts(),p=posts.find(x=>x.id===id);if(p){p.title=document.getElementById("createTitle").value.trim();p.text=document.getElementById("createCaption").value.trim();p.category=document.getElementById("createCategory").value;p.tags=document.getElementById("createTags").value.split(",").map(x=>x.trim()).filter(Boolean);p.published=true;savePosts(posts);window._editingPostId=null;closeCreate();renderStudioContent();renderHomeFlow();renderFeed();renderStudio();toast("✅ Post updated successfully.");return}}const title=document.getElementById("createTitle").value.trim(),caption=document.getElementById("createCaption").value.trim(),category=document.getElementById("createCategory").value,tags=document.getElementById("createTags").value.trim();if(createKind==="game"){const code=document.getElementById("createCode").value.trim();if(!code&&!createState.media)return toast("Add the game code or a game file first.");if(code){addPost({type:"game",title:title||"BMC Game Break",text:caption,code,category,tags,author:"BA",visibility:createState.visibility,showInScroll:createState.showInScroll,commentsEnabled:createState.comments,featured:createState.featured});return}}if(createKind!=="text"&&!createState.media)return toast("Choose a media file first.");const data={type:createKind,title:title||"BMC Post",text:caption,category,tags,author:"BA",visibility:createState.visibility,showInScroll:createState.showInScroll,commentsEnabled:createState.comments,featured:createState.featured,media:createState.media?.data||null,thumbnail:createState.thumbnail?.data||null,sound:createState.sound?.data||null};addPost(data)}
+async function addPost(data){try{for(const k of ["media","thumbnail","sound"]){if(data[k]&&typeof data[k]==="string"&&data[k].startsWith("data:")){data[k+"Ref"]=await putMedia(data[k]);delete data[k]}}const p=allPosts();p.unshift({id:"p_"+Date.now()+"_"+Math.random().toString(36).slice(2),likes:0,comments:[],views:0,saves:0,...data});if(!savePosts(p))return;closeCreate();toast("Upload successful — no artificial video-size, text-length or post-count limit was applied.");renderStudio();go("scroll")}catch(e){toast("Could not save this upload: "+e.message)}}
+/* BMC AI import + image creation */
+let aiImported={file:null,data:null};let aiGeneratedImageData=null;
+function handleAIImport(input){const file=input.files&&input.files[0];if(!file)return;aiImported={file,data:null};const status=document.getElementById("aiImportStatus"),preview=document.getElementById("aiImportPreview");status.textContent="⏳ Importing "+file.name+"…";const r=new FileReader();r.onload=()=>{aiImported.data=r.result;if(file.type.startsWith("image/")){preview.src=r.result;preview.style.display="block"}else preview.style.display="none";status.textContent="✅ Imported successfully: "+file.name};r.onerror=()=>status.textContent="❌ Import failed.";r.readAsDataURL(file)}
+async function askAboutImport(){if(!aiImported.file||!aiImported.data)return toast("Import a file first.");const key=getAIKey();if(!key)return toast("Connect Gemini first in Studio → AI Connection.");const prompt=document.getElementById("aiImportPrompt").value.trim()||"Analyze this imported file and explain the most important points clearly.";const parts=[{text:prompt}];if(aiImported.file.type.startsWith("text/")||/\.(txt|md|csv|json)$/i.test(aiImported.file.name)){const text=await aiImported.file.text();parts.unshift({text:"Imported file content:\n"+text})}else{parts.unshift({inlineData:{mimeType:aiImported.file.type,data:aiImported.data.split(",")[1]}})}try{const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body:JSON.stringify({contents:[{parts}],systemInstruction:{parts:[{text:aiSystemInstruction()}]}})});const data=await res.json();if(!res.ok)throw new Error(data?.error?.message||`HTTP ${res.status}`);const a=data?.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("")||"No response.";document.getElementById("aiImportStatus").textContent="✅ BMC AI analyzed the import.";document.getElementById("aiMessages").style.display="flex";document.getElementById("aiMessages").innerHTML=`<div class="bubble user">${esc(prompt)}</div><div class="bubble ai">${esc(a)}</div>`;toast("BMC AI finished the import analysis.")}catch(e){document.getElementById("aiImportStatus").textContent="❌ AI import error: "+e.message}}
+async function generateAIImage(){const key=getAIKey();if(!key)return toast("Connect Gemini first in Studio → AI Connection.");const prompt=document.getElementById("aiImagePrompt").value.trim();if(!prompt)return toast("Describe the image first.");const ratio=document.getElementById("aiImageRatio").value,size=document.getElementById("aiImageSize").value,status=document.getElementById("aiImageStatus"),img=document.getElementById("aiGeneratedImage"),use=document.getElementById("aiUseImage");status.textContent="⏳ Generating image…";img.style.display="none";use.style.display="none";try{const res=await fetch("https://generativelanguage.googleapis.com/v1beta/interactions",{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body:JSON.stringify({model:"gemini-3.1-flash-image",input:prompt,response_format:{type:"image",aspect_ratio:ratio,image_size:size}})});const data=await res.json();if(!res.ok)throw new Error(data?.error?.message||`HTTP ${res.status}`);let b64=data?.output_image?.data,mime=data?.output_image?.mime_type||"image/png";if(!b64&&Array.isArray(data?.steps)){for(const step of data.steps){for(const block of (step.content||[])){if(block.type==="image"&&block.data){b64=block.data;mime=block.mime_type||mime}}}}if(!b64)throw new Error("No generated image was returned.");aiGeneratedImageData=`data:${mime};base64,${b64}`;img.src=aiGeneratedImageData;img.style.display="block";use.style.display="inline-block";status.textContent="✅ Image created successfully.";toast("🖼️ BMC AI created your image.")}catch(e){status.textContent="❌ Image generation error: "+e.message}}
+function useGeneratedImageInCreate(){if(!aiGeneratedImageData)return;openCreate();createState.media={name:"BMC AI generated image",size:0,type:"image/png",data:aiGeneratedImageData};document.getElementById("createMediaStatus").textContent="✅ BMC AI image ready to publish.";document.getElementById("createFileLabel").textContent="BMC AI generated image"}
+/* BMC AI TRAINING */
+function getAITraining(){return get(STORE.aiTrain,{name:"BMC AI",persona:"You are BMC AI, the official helpful assistant of BMC Scroll.",rules:"Be helpful, honest, clear and accurate. Do not invent facts. Explain difficult things step by step and provide complete answers when useful.",language:"Answer in the user's language when practical. Support English, Arabic and Darija.",extra:""})}
+function loadAITraining(showToast){if(!isCEO())return;const t=getAITraining();document.getElementById("aiTrainName").value=t.name||"";document.getElementById("aiTrainPersona").value=t.persona||"";document.getElementById("aiTrainRules").value=t.rules||"";document.getElementById("aiTrainLanguage").value=t.language||"";document.getElementById("aiTrainExtra").value=t.extra||"";if(showToast)toast("BMC AI training reloaded.")}
+function saveAITraining(){if(!isCEO())return toast("CEO LAB is locked.");const t={name:document.getElementById("aiTrainName").value.trim()||"BMC AI",persona:document.getElementById("aiTrainPersona").value.trim(),rules:document.getElementById("aiTrainRules").value.trim(),language:document.getElementById("aiTrainLanguage").value.trim(),extra:document.getElementById("aiTrainExtra").value.trim(),updated:new Date().toISOString()};if(set(STORE.aiTrain,t)){const s=document.getElementById("aiTrainStatus");s.style.display="block";s.textContent="✅ BMC AI training saved on this browser.";toast("BMC AI training saved.")}}
+function clearAITraining(){if(!isCEO())return toast("CEO LAB is locked.");if(set(STORE.aiTrain,{name:"BMC AI",persona:"",rules:"",language:"",extra:"",updated:new Date().toISOString()})){loadAITraining(false);const s=document.getElementById("aiTrainStatus");s.style.display="block";s.textContent="Training cleared.";toast("BMC AI training cleared.")}}
+
+/* CEO LAB: Develop with AI */
+function setDevStatus(text,kind){const x=document.getElementById('devAiStatus');if(!x)return;x.className='devStatus'+(kind?' '+kind:'');x.textContent=text}
+function extractGeneratedCode(raw){let t=String(raw||'').trim();const fenced=t.match(/```(?:html|xml|javascript|js)?\s*([\s\S]*?)```/i);if(fenced)t=fenced[1].trim();const htmlStart=t.search(/<!doctype html|<html[\s>]/i);if(htmlStart>0)t=t.slice(htmlStart);if(!/<(?:html|body|div|section|style|script)[\s>]/i.test(t)){const m=t.match(/(<[\s\S]+>)/);if(m)t=m[1]}return t.trim()}
+async function developWithAI(autoPublish){
+ if(!isCEO())return toast('CEO LAB is locked.');
+ const prompt=document.getElementById('devAiPrompt').value.trim();if(!prompt)return toast('Tell BMC AI what you want to build first.');
+ const key=getAIKey();if(!key)return toast('Connect Gemini first in Studio → AI Connection.');
+ setDevStatus('⏳ BMC AI is designing, coding and wiring your feature…');
+ try{
+  const instruction=`You are the BMC Scroll CEO development agent. Build a complete self-contained web feature from the CEO request below. Return ONLY runnable HTML code (one document) containing its own CSS and JavaScript. Make it mobile-first, polished, accessible, responsive and professional in the BMC Scroll navy/blue/gold style. Do not use external libraries or remote assets. The feature must work offline inside a sandboxed iframe. If the request says where it should appear, build that placement into the feature UI and use the BMC host bridge when useful. The bridge is available with window.parent.postMessage({source:"bmc-feature",action:"navigate",target:"home"},"*") or actions toast, openCreate, refreshHome and refreshScroll. Do not use external libraries. Do not include markdown fences. CEO request:\n${prompt}`;
+  const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({systemInstruction:{parts:[{text:aiSystemInstruction()}]},contents:[{role:'user',parts:[{text:instruction}]}],generationConfig:{temperature:0.35}})});
+  const data=await res.json();if(!res.ok)throw new Error(data?.error?.message||`HTTP ${res.status}`);
+  const raw=data?.candidates?.[0]?.content?.parts?.map(x=>x.text||'').join('')||'';const code=extractGeneratedCode(raw);if(!code)throw new Error('BMC AI returned no runnable code.');
+  document.getElementById('devAiCode').value=code;document.getElementById('devAiPreview').srcdoc=code;setDevStatus(autoPublish?'⏳ Code generated — publishing it into BMC Scroll…':'✅ Feature built. Review the preview, then publish when ready.','ok');
+  if(autoPublish)publishDevelopedFeature();
+ }catch(e){setDevStatus('❌ Development error: '+e.message,'bad');toast('BMC AI development failed.')}
+}
+function clearDevAI(){document.getElementById('devAiPrompt').value='';document.getElementById('devAiCode').value='';document.getElementById('devAiName').value='';document.getElementById('devAiPreview').srcdoc='';setDevStatus('Ready — describe your feature above.')}
+function publishDevelopedFeature(){
+ if(!isCEO())return toast('CEO LAB is locked.');
+ const code=document.getElementById('devAiCode').value.trim();if(!code)return toast('Build a feature first.');
+ const name=document.getElementById('devAiName').value.trim()||document.getElementById('devAiPrompt').value.trim().slice(0,45)||'BMC AI Feature';
+ const f=get(STORE.features,[]);f.unshift({id:'f_'+Date.now()+'_'+Math.random().toString(36).slice(2),name,code,date:new Date().toLocaleString(),source:'BMC AI Developer'});
+ if(set(STORE.features,f)){renderFeatures();renderCustomFeatures();setDevStatus('🚀 Published! Your AI-built feature is now connected to BMC Scroll and appears in the BMC Features area.','ok');toast('🚀 Feature published to BMC Scroll.');}
+}
+
+/* CEO LAB */
+function isCEO(){return sessionStorage.getItem("bmc_ceo")==="true"}
+function unlockLab(){const e=document.getElementById("labEmail").value.trim().toLowerCase();if(e===CEO_EMAIL.toLowerCase()){sessionStorage.setItem("bmc_ceo","true");showLab();toast("CEO LAB unlocked.")}else toast("Access denied.")}
+function showLab(){if(!isCEO())return;document.getElementById("labLocked").style.display="none";document.getElementById("labArea").classList.add("unlocked");document.getElementById("labNav").style.display="flex";const tools=document.getElementById("studioCeoTools");if(tools)tools.style.display="flex";const badge=document.getElementById("accountCeoBadge");if(badge)badge.innerHTML='<span class="ceoBadge">👑 GOLDEN CEO • VERIFIED</span>';const labBtn=document.querySelector(".accountLab");if(labBtn)labBtn.textContent="🧪 Open CEO LAB";renderFeatures();loadAITraining(false)}
+function lockLab(){sessionStorage.removeItem("bmc_ceo");document.getElementById("labArea").classList.remove("unlocked");document.getElementById("labLocked").style.display="block";document.getElementById("labNav").style.display="none";const tools=document.getElementById("studioCeoTools");if(tools)tools.style.display="none";const badge=document.getElementById("accountCeoBadge");if(badge)badge.innerHTML='<span class="muted" style="font-size:12px">Standard creator account</span>';const labBtn=document.querySelector(".accountLab");if(labBtn)labBtn.textContent="🔐 Unlock CEO LAB";go("home");toast("CEO LAB locked.")}
+function previewFeature(){if(!isCEO())return toast("CEO LAB is locked.");const code=document.getElementById("featureCode").value,frame=document.getElementById("featurePreview");frame.srcdoc=code||"<p style='font-family:system-ui;padding:20px'>Nothing to preview yet.</p>"}
+function saveFeature(){if(!isCEO())return toast("CEO LAB is locked.");const code=document.getElementById("featureCode").value.trim(),name=document.getElementById("featureName").value.trim();if(!code)return toast("Paste HTML/CSS/JS first.");const f=get(STORE.features,[]);f.unshift({id:"f_"+Date.now(),name:name||"BMC Feature "+(f.length+1),code,date:new Date().toLocaleString()});if(set(STORE.features,f)){document.getElementById("featureName").value="";renderFeatures();renderCustomFeatures();toast("Feature saved.")}}
+function renderFeatures(){if(!isCEO())return;const box=document.getElementById("featureList"),f=get(STORE.features,[]);box.innerHTML=f.length?f.map((x,i)=>`<div class="customFeature"><div><b>${esc(x.name)}</b><div class="muted" style="font-size:12px">${esc(x.date)}</div></div><div><button onclick="loadFeature(${i})">Edit</button> <button onclick="runFeature(${i})">Run</button> <button style="background:var(--danger)" onclick="deleteFeature(${i})">Delete</button></div></div>`).join(""):"<p class='muted'>No saved features yet.</p>"}
+function loadFeature(i){const f=get(STORE.features,[])[i];if(!f)return;document.getElementById("featureName").value=f.name;document.getElementById("featureCode").value=f.code;previewFeature()}
+function runFeature(i){const f=get(STORE.features,[])[i];if(!f)return;document.getElementById("featureRunner").style.display="flex";document.getElementById("featureRunnerFrame").srcdoc=f.code}
+function closeFeatureRunner(){document.getElementById("featureRunner").style.display="none";document.getElementById("featureRunnerFrame").srcdoc=""}
+function deleteFeature(i){const f=get(STORE.features,[]);f.splice(i,1);set(STORE.features,f);renderFeatures();renderCustomFeatures();toast("Feature deleted.")}
+function clearFeature(){document.getElementById("featureName").value="";document.getElementById("featureCode").value="";document.getElementById("featurePreview").srcdoc=""}
+function renderCustomFeatures(){
+ const f=get(STORE.features,[]);
+ const box=document.getElementById("customFeatureList");
+ if(box)box.innerHTML=f.length?f.slice(0,12).map((x,i)=>`<div class="customFeature"><span>🧩 <b>${esc(x.name)}</b></span><button onclick="runFeature(${i})">Open</button></div>`).join(""):"<p class='muted' style='margin-top:10px'>No custom features yet. Unlock CEO LAB to add one.</p>";
+ const home=document.getElementById("customFeatureHomeGrid");
+ if(home)home.innerHTML=f.length?f.slice(0,12).map((x,i)=>`<div class="feature" onclick="runFeature(${i})"><div class="icon">🧩</div><h3>${esc(x.name)}</h3><p>CEO LAB feature — tap to open inside BMC Scroll.</p></div>`).join(""):"<div class='empty' style='grid-column:1/-1'>No custom features yet.</div>";
+}
+/* BMC Feature Bridge: lets AI-built sandboxed features communicate with the host app safely. */
+window.addEventListener('message',e=>{
+ const d=e.data;if(!d||d.source!=='bmc-feature')return;
+ if(d.action==='navigate'&&['home','scroll','search','study','games','ai','studio','lab'].includes(d.target))go(d.target);
+ if(d.action==='toast')toast(String(d.message||'BMC feature action completed.').slice(0,240));
+ if(d.action==='openCreate')openCreate();
+ if(d.action==='refreshHome')renderHomeFlow();
+ if(d.action==='refreshScroll')renderFeed();
+});
+function bmcFeatureBridgeHelp(){return 'Use window.parent.postMessage({source:"bmc-feature",action:"navigate",target:"home"},"*") or {action:"toast",message:"..."}, {action:"openCreate"}, {action:"refreshHome"}, {action:"refreshScroll"}.'}
+
+/* Games */
+function startTap(){const a=document.getElementById("tapArea");let score=0,end=Date.now()+10000;a.innerHTML=`<button id="tapBtn" style="background:var(--gold);color:#17213d;border:0;border-radius:50%;width:80px;height:80px;font-weight:900">TAP!</button><p id="tapScore" style="margin-top:8px">0</p>`;const b=document.getElementById("tapBtn");b.onclick=()=>{if(Date.now()<end){score++;document.getElementById("tapScore").textContent=score}};setTimeout(()=>{b.disabled=true;a.innerHTML+=`<p><b>Score: ${score}</b></p>`},10000)}
+function startSnake(){document.getElementById("snakeArea").innerHTML="<p>🐍 Snake mini is ready. Use arrow keys on a keyboard.</p><canvas id='snakeCanvas' width='260' height='160' style='max-width:100%;background:#07183f;border-radius:10px;margin-top:10px'></canvas>";const c=document.getElementById("snakeCanvas"),ctx=c.getContext("2d");let x=20,y=20,dx=10,dy=0;document.onkeydown=e=>{if(e.key==="ArrowUp"&&dy===0){dx=0;dy=-10}if(e.key==="ArrowDown"&&dy===0){dx=0;dy=10}if(e.key==="ArrowLeft"&&dx===0){dx=-10;dy=0}if(e.key==="ArrowRight"&&dx===0){dx=10;dy=0}};function loop(){ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle="#f5c43b";ctx.fillRect(x,y,10,10);x+=dx;y+=dy;if(x<0||x>=c.width||y<0||y>=c.height){x=20;y=20;dx=10;dy=0}requestAnimationFrame(loop)}loop()}
+function init(){renderFeed();renderHomeFlow();renderStudy();renderStudio();if(isCEO())showLab();else document.getElementById("labNav").style.display="none";loadAIConnectionUI();renderCurrentAIChat();initVoices()}
+document.addEventListener("DOMContentLoaded",init);
+</script>
+</body>
+</html>
